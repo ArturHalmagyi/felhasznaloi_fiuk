@@ -51,6 +51,8 @@ public class Main_menu extends ActionBarActivity {
         String s = "7good14ou";
         String f = "7good14ou";
         String z = "getszn ojpdm6";
+        //kfldés
+        int i = 1;
     }
 
 }
