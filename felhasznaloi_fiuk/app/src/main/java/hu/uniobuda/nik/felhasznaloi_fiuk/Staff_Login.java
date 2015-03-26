@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class StaffLoginActivity extends ActionBarActivity {
+public class Staff_Login extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

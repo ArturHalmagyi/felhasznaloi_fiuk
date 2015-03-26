@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".StaffLoginActivity"
+            android:name=".Staff_Login"
             android:label="@string/title_activity_staff_login"
             android:parentActivityName=".Guest_Main_menu" >
             <meta-data
