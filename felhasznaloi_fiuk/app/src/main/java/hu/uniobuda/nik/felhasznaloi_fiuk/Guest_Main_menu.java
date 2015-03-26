@@ -14,7 +14,6 @@ public class Guest_Main_menu extends ActionBarActivity {
         setContentView(R.layout.activity_guest_main_menu);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
