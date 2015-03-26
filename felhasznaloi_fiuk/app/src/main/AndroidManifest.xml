@@ -33,6 +33,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Guest_Meal"
+            android:label="@string/title_activity_guest__meal"
+            android:parentActivityName=".Guest_Main_menu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="hu.uniobuda.nik.felhasznaloi_fiuk.Guest_Main_menu" />
+        </activity>
+        <activity
+            android:name=".Staff_Meal"
+            android:label="@string/title_activity_staff__meal"
+            android:parentActivityName=".Staff_Main_menu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="hu.uniobuda.nik.felhasznaloi_fiuk.Staff_Main_menu" />
+        </activity>
+        <activity
+            android:name=".Tables"
+            android:label="@string/title_activity_tables"
+            android:parentActivityName=".Staff_Main_menu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="hu.uniobuda.nik.felhasznaloi_fiuk.Staff_Main_menu" />
+        </activity>
     </application>
 
 </manifest>
