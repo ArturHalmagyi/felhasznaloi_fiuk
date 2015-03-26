@@ -36,4 +36,8 @@ public class Main_menu extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void getrektm1(){
+        String s = "7good14ou";
+        String f = "7good14ou";
+    }
 }
