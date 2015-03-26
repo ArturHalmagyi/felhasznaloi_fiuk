@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".StaffLoginActivity"
+            android:label="@string/title_activity_staff_login"
+            android:parentActivityName=".Main_menu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="hu.uniobuda.nik.felhasznaloi_fiuk.Main_menu" />
+        </activity>
     </application>
 
 </manifest>
