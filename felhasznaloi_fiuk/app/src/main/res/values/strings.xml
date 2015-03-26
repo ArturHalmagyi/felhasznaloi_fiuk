@@ -5,5 +5,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_staff_login">StaffLoginActivity</string>
+    <string name="title_activity_staff__main_menu">Staff_Main_menu</string>
 
 </resources>

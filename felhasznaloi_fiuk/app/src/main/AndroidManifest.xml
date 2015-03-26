@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Main_menu"
+            android:name=".Guest_Main_menu"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +19,19 @@
         <activity
             android:name=".StaffLoginActivity"
             android:label="@string/title_activity_staff_login"
-            android:parentActivityName=".Main_menu" >
+            android:parentActivityName=".Guest_Main_menu" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="hu.uniobuda.nik.felhasznaloi_fiuk.Main_menu" />
+                android:value=".Guest_Main_menu" />
+        </activity>
+        <activity
+            android:name=".Staff_Main_menu"
+            android:label="@string/title_activity_staff__main_menu" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
