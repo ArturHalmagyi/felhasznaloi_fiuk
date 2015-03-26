@@ -5,11 +5,57 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Main_menu">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/brask_facebook_logo_400x400"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <Button
-        android:text="busi"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Étlap"
+        android:id="@+id/btn_meal"
+        android:layout_below="@+id/imageView"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        style="@style/TextAppearance.AppCompat.Button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Asztal azonositása"
+        android:id="@+id/btn_tables"
+        android:layout_below="@+id/btn_meal"
+        android:layout_alignLeft="@+id/btn_meal"
+        android:layout_alignStart="@+id/btn_meal"
+        android:layout_alignRight="@+id/btn_meal"
+        android:layout_alignEnd="@+id/btn_meal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fizetés"
+        android:id="@+id/btn_pay"
+        android:layout_below="@+id/btn_tables"
+        android:layout_alignLeft="@+id/btn_tables"
+        android:layout_alignStart="@+id/btn_tables"
+        android:layout_alignRight="@+id/btn_tables"
+        android:layout_alignEnd="@+id/btn_tables" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Megrendeléseim"
+        android:id="@+id/btn_order"
+        android:layout_below="@+id/btn_pay"
+        android:layout_alignLeft="@+id/btn_pay"
+        android:layout_alignStart="@+id/btn_pay"
+        android:layout_alignRight="@+id/btn_pay"
+        android:layout_alignEnd="@+id/btn_pay" />
 
 </RelativeLayout>
