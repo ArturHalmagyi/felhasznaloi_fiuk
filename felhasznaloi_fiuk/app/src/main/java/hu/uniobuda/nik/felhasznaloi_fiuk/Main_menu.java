@@ -36,23 +36,4 @@ public class Main_menu extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void getrektm1(){
-        String s = "7good14ou";
-        String f = "7good14ou";
-        String z = "getszn ojpdm6";
-    }
-    public void geterektm1(){
-        String s = "7good14ou";
-        String f = "7good14ou";
-        String z = "getszn ojpdm6";
-    }
-
-    public void geterektme1(){
-        String s = "7good14ou";
-        String f = "7good14ou";
-        String z = "getszn ojpdm6";
-        //kfldés
-        int i = 1;
-    }
-
 }
