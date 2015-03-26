@@ -11,7 +11,7 @@ public class Guest_Main_menu extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_guest_main_menu);
     }
 
 

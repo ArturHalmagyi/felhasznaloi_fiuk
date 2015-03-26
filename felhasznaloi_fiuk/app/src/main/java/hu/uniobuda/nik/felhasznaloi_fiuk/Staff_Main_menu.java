@@ -11,7 +11,7 @@ public class Staff_Main_menu extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_staff__main_menu);
+        setContentView(R.layout.activity_staff_main_menu);
     }
 
 
