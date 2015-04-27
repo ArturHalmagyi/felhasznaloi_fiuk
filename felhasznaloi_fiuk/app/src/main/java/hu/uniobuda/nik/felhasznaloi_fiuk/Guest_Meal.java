@@ -20,7 +20,7 @@ public class Guest_Meal extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_guesst_meal, menu);
+        getMenuInflater().inflate(R.menu.menu_guest_meal, menu);
         return true;
     }
 

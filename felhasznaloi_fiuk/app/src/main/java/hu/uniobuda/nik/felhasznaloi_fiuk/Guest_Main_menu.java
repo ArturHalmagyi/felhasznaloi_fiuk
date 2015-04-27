@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+
 
 public class Guest_Main_menu extends ActionBarActivity {
 
@@ -12,6 +14,8 @@ public class Guest_Main_menu extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_main_menu);
+        IntentIntegrator integrator = new IntentIntegrator(Guest_Main_menu.this);
+        integrator.initiateScan(integrator.QR_CODE_TYPES);
     }
 
     @Override
