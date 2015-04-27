@@ -4,7 +4,7 @@ package hu.uniobuda.nik.felhasznaloi_fiuk;
  * Created by Barnaby-Laptop on 2015.03.26..
  */
 public class Product {
-
+    // valami
     public int getPrice() {
         return price;
     }

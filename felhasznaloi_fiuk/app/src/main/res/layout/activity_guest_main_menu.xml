@@ -16,7 +16,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Étlap"
+        android:text="Étlp"
         android:id="@+id/btn_meal"
         android:layout_below="@+id/imageView"
         android:layout_alignLeft="@+id/imageView"
