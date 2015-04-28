@@ -26,19 +26,11 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/layout_activity_guest_main_menu_asztal_azonositas"
+        android:text="@string/layout_activity_staff_main_menu_asztalok"
         android:id="@+id/btn_tables"
         android:layout_below="@+id/btn_meal"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/layout_activity_guest_main_menu_megrendeleseim"
-        android:id="@+id/btn_order"
-        android:layout_below="@+id/btn_tables"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="match_parent"
@@ -46,6 +38,6 @@
         android:text="@string/layout_activity_guest_main_menu_fizetes"
         android:id="@+id/btn_pay"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btn_order"/>
+        android:layout_below="@+id/btn_tables"/>
 
 </RelativeLayout>

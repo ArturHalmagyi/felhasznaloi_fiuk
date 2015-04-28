@@ -18,6 +18,7 @@
     <string name="layout_activity_guest_main_menu_megrendeleseim">Megrendeléseim</string>
 
     <string name="layout_activity_staff_bejelentkezes">Staff</string>
+    <string name="layout_activity_staff_main_menu_asztalok">Asztalok</string>
 
     <string name="layout_activity_staff_login_felhasznalonev">Felhasználónév</string>
     <string name="layout_activity_staff_login_jelszo">Jelszó</string>
