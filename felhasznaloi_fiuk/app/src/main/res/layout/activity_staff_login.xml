@@ -29,12 +29,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:id="@+id/editText2"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
+        android:layout_alignStart="@+id/textView2"
+        >
+        <requestFocus/>
+    </EditText>
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,6 +58,15 @@
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/layout_activity_staff_login_ButtonLogin"
+        android:id="@+id/button"
+        android:onClick="login"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp" />
 
 
 </RelativeLayout>
