@@ -17,14 +17,14 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:layout_column="0"
-            android:text="Termék"
+            android:text="@string/layout_guest_meal_product"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:text="Ár"
+            android:text="@string/layout_guest_meal_price"
             />
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="5dp"
             android:layout_column="4"
-            android:text="Mennyiség"
+            android:text="@string/layout_guest_meal_quantity"
             />
 
     </GridLayout>

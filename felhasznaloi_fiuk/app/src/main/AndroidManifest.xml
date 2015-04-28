@@ -6,8 +6,10 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        >
         <activity
+            android:screenOrientation="portrait"
             android:name=".Guest_Main_menu"
             android:label="@string/app_name" >
             <intent-filter>
@@ -17,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".Staff_Login"
             android:label="@string/title_activity_staff_login"
             android:parentActivityName=".Guest_Main_menu" >
@@ -25,6 +28,7 @@
                 android:value=".Staff_Main_menu" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".Staff_Main_menu"
             android:label="@string/title_activity_staff__main_menu" >
             <intent-filter>
@@ -34,6 +38,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".Guest_Meal"
             android:label="@string/title_activity_guest__meal"
             android:parentActivityName=".Guest_Main_menu" >
@@ -42,6 +47,7 @@
                 android:value="hu.uniobuda.nik.felhasznaloi_fiuk.Guest_Main_menu" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".Staff_Meal"
             android:label="@string/title_activity_staff__meal"
             android:parentActivityName=".Staff_Main_menu" >
@@ -50,6 +56,7 @@
                 android:value="hu.uniobuda.nik.felhasznaloi_fiuk.Staff_Main_menu" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".Tables"
             android:label="@string/title_activity_tables"
             android:parentActivityName=".Staff_Main_menu" >
