@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Communication {
 
-    ArrayList<Product> products;
+    public static ArrayList<Product> products;
     ArrayList<Table> tables;
 
 
@@ -24,7 +24,10 @@ public class Communication {
         }
     }
 
-    public void LoadTestProducts(Table table){
+    public void LoadTestProducts(){
+        if (products == null){
+            products = new ArrayList<Product>();
+        }
         for (int i = 0; i < 20; i++){
             Product temp = new Product();
             temp.setName(String.valueOf(i));
@@ -47,7 +50,7 @@ public class Communication {
     public void LoadMenu(ArrayList<Product> products){
         this.products = products;
     }
-    public ArrayList<Product> GetProducts(){
+    public static ArrayList<Product> GetProducts(){
         return products;
     }
     public void AddTable(Table table){

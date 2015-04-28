@@ -13,17 +13,24 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 
+
 public class Guest_Main_menu extends ActionBarActivity {
 
     Button btnAzonositas;
     Button btnMeal;
     String azonositottString;
+    // szerverrel való kommunikációért felelős példány
+    public static Communication communicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_main_menu);
 
+        //szerverrel való kommunikációért felelős osztály példányosítása
+        communicator = new Communication();
+        communicator.LoadTestTables();
+        communicator.LoadTestProducts();
 
         btnAzonositas = (Button) findViewById(R.id.btn_tables);
         azonositottString = "";
@@ -41,6 +48,7 @@ public class Guest_Main_menu extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Guest_Main_menu.this, Guest_Meal.class);
+
                 startActivity(intent);
             }
         });

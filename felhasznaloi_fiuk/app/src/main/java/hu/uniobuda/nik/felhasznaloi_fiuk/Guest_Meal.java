@@ -31,7 +31,6 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
     boolean can_submit; //Azonosítva van-e az asztal
 
 
-
     ListView listView;
 
     ArrayList<NameValuePair> products;
@@ -44,6 +43,11 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
         products = new ArrayList<NameValuePair>();
         Populate_List(products); //TODO ez később a szerver lesz
 
+        ///test
+        arr = new ArrayList<Product>();
+        arr = Communication.GetProducts();
+
+/*+
         arr = new ArrayList<Product>();
         productCount = products.size();
         for (int i = 0; i < productCount; i++){
@@ -54,7 +58,7 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
             temp.setDb("db");
             arr.add(temp);
         }
-
+*/
         can_submit = false;
 
         adapter = new CustomAdapter(); //Adapter a listához
