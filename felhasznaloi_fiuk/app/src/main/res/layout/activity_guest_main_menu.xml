@@ -9,52 +9,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
+        android:background="@drawable/ic_launcher"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Étlp"
+        android:text="@string/layout_activity_guest_main_menu_etlap"
         android:id="@+id/btn_meal"
+        style="@style/TextAppearance.AppCompat.Button"
         android:layout_below="@+id/imageView"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView"
-        style="@style/TextAppearance.AppCompat.Button" />
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Asztal azonositása"
+        android:text="@string/layout_activity_guest_main_menu_asztal_azonositas"
         android:id="@+id/btn_tables"
         android:layout_below="@+id/btn_meal"
-        android:layout_alignLeft="@+id/btn_meal"
-        android:layout_alignStart="@+id/btn_meal"
-        android:layout_alignRight="@+id/btn_meal"
-        android:layout_alignEnd="@+id/btn_meal" />
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fizetés"
+        android:text="@string/layout_activity_guest_main_menu_fizetes"
         android:id="@+id/btn_pay"
-        android:layout_below="@+id/btn_tables"
-        android:layout_alignLeft="@+id/btn_tables"
-        android:layout_alignStart="@+id/btn_tables"
-        android:layout_alignRight="@+id/btn_tables"
-        android:layout_alignEnd="@+id/btn_tables" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_order"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Megrendeléseim"
+        android:text="@string/layout_activity_guest_main_menu_megrendeleseim"
         android:id="@+id/btn_order"
-        android:layout_below="@+id/btn_pay"
-        android:layout_alignLeft="@+id/btn_pay"
-        android:layout_alignStart="@+id/btn_pay"
-        android:layout_alignRight="@+id/btn_pay"
-        android:layout_alignEnd="@+id/btn_pay" />
+        android:layout_below="@+id/btn_tables"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
