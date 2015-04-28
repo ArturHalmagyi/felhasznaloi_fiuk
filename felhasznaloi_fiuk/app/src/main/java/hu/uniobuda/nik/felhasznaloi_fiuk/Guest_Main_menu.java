@@ -16,6 +16,7 @@ import com.google.zxing.integration.android.IntentResult;
 public class Guest_Main_menu extends ActionBarActivity {
 
     Button btnAzonositas;
+    Button btnMeal;
     String azonositottString;
 
     @Override
@@ -32,6 +33,15 @@ public class Guest_Main_menu extends ActionBarActivity {
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(Guest_Main_menu.this);
                 integrator.initiateScan(integrator.QR_CODE_TYPES);
+            }
+        });
+
+        btnMeal = (Button) findViewById(R.id.btn_meal);
+        btnMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Guest_Main_menu.this, Guest_Meal.class);
+                startActivity(intent);
             }
         });
 
