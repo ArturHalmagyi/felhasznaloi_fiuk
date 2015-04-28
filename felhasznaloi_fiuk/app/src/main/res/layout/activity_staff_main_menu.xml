@@ -48,14 +48,4 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/btn_order"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/layout_activity_staff_main_menu_bejelentkezes"
-        android:id="@+id/btn_login"
-        android:onClick="startLogin"
-        android:layout_below="@+id/btn_pay"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
 </RelativeLayout>

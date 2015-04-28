@@ -74,10 +74,5 @@ public class Staff_Main_menu extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void startLogin(View view)
-    {
 
-        Intent intent = new Intent(this, Staff_Login.class);
-        startActivity(intent);
-    }
 }

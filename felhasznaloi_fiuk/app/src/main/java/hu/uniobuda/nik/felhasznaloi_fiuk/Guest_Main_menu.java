@@ -37,6 +37,12 @@ public class Guest_Main_menu extends ActionBarActivity {
 
     }
 
+    public void startLogin(View view)
+    {
+
+        Intent intent = new Intent(this, Staff_Login.class);
+        startActivity(intent);
+    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);

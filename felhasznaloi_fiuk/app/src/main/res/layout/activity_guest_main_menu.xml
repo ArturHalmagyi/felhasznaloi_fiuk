@@ -47,4 +47,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/layout_activity_staff_bejelentkezes"
+        android:id="@+id/btn_login"
+        android:onClick="startLogin"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/btn_meal"
+        android:layout_alignEnd="@+id/btn_meal"
+        android:background="@color/zxing_transparent" />
+
 </RelativeLayout>
