@@ -4,28 +4,23 @@ package hu.uniobuda.nik.felhasznaloi_fiuk;
  * Created by Barnaby-Laptop on 2015.03.26..
  */
 public class Product {
-    // valami
-    public int getPrice() {
-        return price;
-    }
+    ///Adattagok
+    String price; //A termék ára
+    String name; //A termék neve
+    String db; //A termék mértékegysége
+    String quantity; //A termékből rendelt mennyiség
 
-    public String getName() {
-        return name;
-    }
+    ///Elérési metódusok az adattagokhoz
+    public String getPrice() {return price;}
+    public void setPrice(String price) {this.price = price;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public String getDb() {return db;}
+    public void setDb(String db) {this.db = db;}
+    public String getQuantity() {return quantity;}
+    public void setQuantity(String quantity) {this.quantity = quantity;}
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    int price;
-    String name;
-
-    public Product(int price, String name) {
-        this.price = price;
-        this.name = name;
+    ///Konstruktor
+    public Product() {
     }
 }
