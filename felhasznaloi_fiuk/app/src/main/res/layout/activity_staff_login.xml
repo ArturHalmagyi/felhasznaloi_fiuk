@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
+        android:background="@drawable/ic_launcher"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -21,8 +22,7 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editText"
-        android:layout_marginBottom="76dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -40,20 +40,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="@string/layout_activity_staff_login_felhasznalonev"
         android:id="@+id/textView"
         android:layout_below="@+id/imageView"
         android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_marginTop="43dp" />
+        android:layout_alignStart="@+id/editText2" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="@string/layout_activity_staff_login_jelszo"
         android:id="@+id/textView2"
-        android:layout_above="@+id/editText"
+        android:layout_below="@+id/editText2"
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText" />
 

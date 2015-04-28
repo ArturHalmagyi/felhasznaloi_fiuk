@@ -17,5 +17,10 @@
     <string name="layout_activity_guest_main_menu_fizetes">Fizetés</string>
     <string name="layout_activity_guest_main_menu_megrendeleseim">Megrendeléseim</string>
 
+    <string name="layout_activity_staff_login_felhasznalonev">Felhasználónév</string>
+    <string name="layout_activity_staff_login_jelszo">Jelszó</string>
+
+
+
 
 </resources>
