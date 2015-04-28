@@ -11,10 +11,16 @@ import android.widget.Toast;
 
 public class Staff_Login extends ActionBarActivity {
 
+
+    private EditText  username=null;
+    private EditText  password=null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_login);
+        username = (EditText)findViewById(R.id.editText);
+        password = (EditText)findViewById(R.id.editText2);
     }
 
 
@@ -39,15 +45,14 @@ public class Staff_Login extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    EditText username = (EditText)findViewById(R.id.editText);
-    EditText password = (EditText)findViewById(R.id.editText2);
     public void login(View view){
         if(username.getText().toString().equals("admin") &&
                 password.getText().toString().equals("admin")){
-            Toast.makeText(getApplicationContext(), "sikeres azonositas",
-                    Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(getApplicationContext(), "nem nyert",
-                    Toast.LENGTH_SHORT).show();
-        }}
+            Toast.makeText(this, "sikeres azonositas",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "nem nyert",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
 }
