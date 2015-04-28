@@ -1,21 +1,55 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 
 public class Guest_Main_menu extends ActionBarActivity {
+
+    Button btnAzonositas;
+    String azonositottString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_main_menu);
-        IntentIntegrator integrator = new IntentIntegrator(Guest_Main_menu.this);
-        integrator.initiateScan(integrator.QR_CODE_TYPES);
+
+
+        btnAzonositas = (Button) findViewById(R.id.btn_tables);
+        azonositottString = "";
+
+        btnAzonositas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator integrator = new IntentIntegrator(Guest_Main_menu.this);
+                integrator.initiateScan(integrator.QR_CODE_TYPES);
+            }
+        });
+
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (result != null) {
+            String contents = result.getContents();
+            azonositottString = result.getContents();
+            if (contents != null) {
+                //showDialog(R.string.result_succeeded, result.toString());
+                Toast.makeText(this, azonositottString, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this,"Result féjld",Toast.LENGTH_LONG);
+            }
+        }
     }
 
     @Override
