@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class Staff_Login extends ActionBarActivity {
@@ -36,4 +39,15 @@ public class Staff_Login extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    EditText username = (EditText)findViewById(R.id.editText);
+    EditText password = (EditText)findViewById(R.id.editText2);
+    public void login(View view){
+        if(username.getText().toString().equals("admin") &&
+                password.getText().toString().equals("admin")){
+            Toast.makeText(getApplicationContext(), "sikeres azonositas",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "nem nyert",
+                    Toast.LENGTH_SHORT).show();
+        }}
 }
