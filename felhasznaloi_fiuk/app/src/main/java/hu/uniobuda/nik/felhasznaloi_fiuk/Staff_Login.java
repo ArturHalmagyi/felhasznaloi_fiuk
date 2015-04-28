@@ -1,5 +1,6 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -50,6 +51,8 @@ public class Staff_Login extends ActionBarActivity {
                 password.getText().toString().equals("admin")){
             Toast.makeText(this, "sikeres azonositas",
                     Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, Staff_Main_menu.class);
+            startActivity(intent);
         } else {
             Toast.makeText(this, "nem nyert",
                     Toast.LENGTH_LONG).show();
