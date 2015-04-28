@@ -49,7 +49,6 @@ public class Guest_Main_menu extends ActionBarActivity {
 
     public void startLogin(View view)
     {
-
         Intent intent = new Intent(this, Staff_Login.class);
         startActivity(intent);
     }

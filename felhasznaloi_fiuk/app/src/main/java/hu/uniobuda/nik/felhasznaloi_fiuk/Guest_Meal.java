@@ -30,6 +30,8 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
     CustomAdapter adapter; //A termékek megjelenítéséhez szükséges adapter
     boolean can_submit; //Azonosítva van-e az asztal
 
+
+
     ListView listView;
 
     ArrayList<NameValuePair> products;
