@@ -10,4 +10,12 @@
     <string name="title_activity_staff__meal">Staff_Meal</string>
     <string name="title_activity_tables">Tables</string>
 
+    <!--Layout xml texts-->
+
+    <string name="layout_activity_guest_main_menu_etlap">Étlap</string>
+    <string name="layout_activity_guest_main_menu_asztal_azonositas">Asztal azonositása</string>
+    <string name="layout_activity_guest_main_menu_fizetes">Fizetés</string>
+    <string name="layout_activity_guest_main_menu_megrendeleseim">Megrendeléseim</string>
+
+
 </resources>
