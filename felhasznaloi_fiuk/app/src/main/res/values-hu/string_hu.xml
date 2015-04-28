@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">felhasznaloi_fiuk</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Brask</string>
+    <string name="action_settings">Beállítások</string>
     <string name="title_activity_staff_login">Bejelentkezés</string>
     <string name="title_activity_staff__main_menu">Főmenü (személyzet)</string>
-    <string name="title_activity_guest__meal">Főmenü</string>
+    <string name="title_activity_guest__meal">Étlap</string>
     <string name="title_activity_staff__meal">Étlap (személyzet)</string>
     <string name="title_activity_tables">Asztalok</string>
 
@@ -23,6 +23,7 @@
     <string name="layout_guest_meal_quantity">Mennyiség</string>
 
     <!-- Staff main menu -->
+
     <string name="layout_activity_staff_bejelentkezes">Személyzet</string>
     <string name="layout_activity_staff_main_menu_asztalok">Asztalok</string>
 
@@ -30,5 +31,7 @@
     <string name="layout_activity_staff_login_felhasznalonev">Felhasználónév</string>
     <string name="layout_activity_staff_login_jelszo">Jelszó</string>
     <string name="layout_activity_staff_login_ButtonLogin">Belépés</string>
+
+    <!-- Staff meal -->
 
 </resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Brask</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_staff_login">Login</string>
+    <string name="title_activity_staff__main_menu">Main Menu (staff)</string>
+    <string name="title_activity_guest__meal">Menu</string>
+    <string name="title_activity_staff__meal">Menu (staff)</string>
+    <string name="title_activity_tables">Tables</string>
+
+    <!--Layout xml texts________________________________________________________________________-->
+
+    <!-- Guest main menu -->
+    <string name="layout_activity_guest_main_menu_etlap">Menu</string>
+    <string name="layout_activity_guest_main_menu_asztal_azonositas">Table ID</string>
+    <string name="layout_activity_guest_main_menu_fizetes">Pay request</string>
+    <string name="layout_activity_guest_main_menu_megrendeleseim">My orders</string>
+
+    <!-- Guest meal -->
+    <string name="layout_guest_meal_product">Product</string>
+    <string name="layout_guest_meal_price">Price</string>
+    <string name="layout_guest_meal_quantity">Quantity</string>
+
+    <!-- Staff main menu -->
+
+    <string name="layout_activity_staff_bejelentkezes">Staff</string>
+    <string name="layout_activity_staff_main_menu_asztalok">Tables</string>
+
+    <!-- Staff login -->
+    <string name="layout_activity_staff_login_felhasznalonev">Username</string>
+    <string name="layout_activity_staff_login_jelszo">Password</string>
+    <string name="layout_activity_staff_login_ButtonLogin">Login</string>
+
+    <!-- Staff meal -->
+
+</resources>
