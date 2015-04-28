@@ -22,7 +22,7 @@
             android:parentActivityName=".Guest_Main_menu" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Guest_Main_menu" />
+                android:value=".Staff_Main_menu" />
         </activity>
         <activity
             android:name=".Staff_Main_menu"
