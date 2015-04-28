@@ -40,6 +40,7 @@ public class Communication {
             temp.setPrice(String.valueOf(i/3*100));
             temp.setDb(String.valueOf(i/5));
             table.addProduct(temp);
+
         }
     }
 
