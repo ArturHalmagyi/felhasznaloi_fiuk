@@ -18,6 +18,8 @@ public class Staff_Main_menu extends ActionBarActivity {
     Button btnAzonositas;
     String azonositottString;
 
+    Button btn_tables;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,15 @@ public class Staff_Main_menu extends ActionBarActivity {
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(Staff_Main_menu.this);
                 integrator.initiateScan(integrator.QR_CODE_TYPES);
+            }
+        });
+
+        btn_tables = (Button) findViewById(R.id.btn_tables);
+        btn_tables.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Staff_Main_menu.this, Tables.class);
+                startActivity(intent);
             }
         });
 
