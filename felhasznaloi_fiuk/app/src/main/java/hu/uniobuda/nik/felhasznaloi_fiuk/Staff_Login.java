@@ -47,8 +47,8 @@ public class Staff_Login extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     public void login(View view){
-        if(username.getText().toString().equals("admin") &&
-                password.getText().toString().equals("admin")){
+        if(username.getText().toString().equals("A") &&
+                password.getText().toString().equals("a")){
             Toast.makeText(this, "sikeres azonositas",
                     Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, Staff_Main_menu.class);
