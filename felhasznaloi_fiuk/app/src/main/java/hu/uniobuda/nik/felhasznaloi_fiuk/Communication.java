@@ -12,14 +12,29 @@ import java.util.Random;
 public class Communication {
 
     public static ArrayList<Product> products;
-    ArrayList<Table> tables;
+    public static ArrayList<Table> tables;
+    Random rand = new Random();
 
 
     public void LoadTestTables(){
-        for (int i = 0; i <10; i++){
+
+        int randTestTables = rand.nextInt(30);
+        for (int i = 0; i <randTestTables; i++){
             Table temp = new Table();
             temp.setName(String.valueOf(i));
-            LoadTestProductsForTables(temp);
+
+            if (i % 10 == 0) {
+                temp.setState("fizet");
+                LoadTestProductsForTables(temp);
+            }
+            else if (i % 4 == 0){
+                temp.setState("foglalt");
+                LoadTestProductsForTables(temp);
+            }
+            else{
+                temp.setState("szabad");
+            }
+
             AddTable(temp);
         }
     }
@@ -28,20 +43,46 @@ public class Communication {
         if (products == null){
             products = new ArrayList<Product>();
         }
-        for (int i = 0; i < 20; i++){
+        int randTestProduct = rand.nextInt(30);
+        for (int i = 0; i < randTestProduct; i++){
             Product temp = new Product();
             temp.setName(String.valueOf(i));
-            temp.setPrice(String.valueOf(i/3*100));
-            temp.setDb(String.valueOf(i/5));
+            temp.setPrice(String.valueOf(i / 3 * 100));
+            temp.setDb(String.valueOf(i / 5));
+            int r = rand.nextInt(30);
+
+            if ( r % 2 == 0){
+                temp.setQuantity("1");
+            }
+            else if (r % 4 == 0){
+                temp.setQuantity("3");
+            }
+            else {
+                temp.setQuantity("2");
+            }
             products.add(temp);
         }
     }
     public void LoadTestProductsForTables(Table table){
-        for (int i = 0; i < 20; i++){
+
+        int randTestProductForTables = rand.nextInt(30);
+        for (int i = 0; i < randTestProductForTables; i++){
             Product temp = new Product();
             temp.setName(String.valueOf(i));
-            temp.setPrice(String.valueOf(i/3*100));
-            temp.setDb(String.valueOf(i/5));
+            temp.setPrice(String.valueOf(i / 3 * 100));
+            temp.setDb(String.valueOf(i / 5));
+            int r = rand.nextInt(30);
+            if ( r % 2 == 0){
+                temp.setQuantity("1");
+            }
+            else if (r % 4 == 0){
+                temp.setQuantity("3");
+            }
+            else {
+                temp.setQuantity("2");
+            }
+
+
             table.addProduct(temp);
 
         }
@@ -59,7 +100,7 @@ public class Communication {
         }
         tables.add(table);
     }
-    public ArrayList<Table> GetTables(){
+    public static ArrayList<Table> GetTables(){
         return tables;
     }
 }

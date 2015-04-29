@@ -8,9 +8,11 @@
     >
 
     <ListView
+
         android:id="@+id/tables"
         android:layout_width="150dp"
         android:layout_height="fill_parent"/>
+    <!--android:id="@+id/tables"-->
 
     <TextView
         android:id="@+id/products"

@@ -1,5 +1,6 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
+import android.app.ListActivity; //
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,14 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Tables extends ActionBarActivity { //Az asztalok állapotát lekérdező activity
+public class Tables extends ActionBarActivity { //Az asztalok állapotát lekérdező activity ///ActionBarActivity
 
     ///Adattagok
     ArrayList<Table> arr_tables; //Az asztalok tömbje
@@ -38,10 +41,15 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
 
         //ListView konfigurálása
         arr_tables = new ArrayList<Table>();
-        Populate_Tables(); //TODO ez majd szerver lesz
+        //Populate_Tables(); //TODO ez majd szerver lesz
+
+        //Kommunikáció osztály asztalok lekérdezésének metódusa meghívódik
+        arr_tables = Communication.GetTables();
+
         t_adapt = new TableAdapter();
         tables = (ListView) findViewById(R.id.tables);
         tables.setAdapter(t_adapt);
+
     }
 
 
@@ -88,56 +96,64 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            final TableHolder holder; //ViewHolder a listához
+
+            //final volt itt, nem kell
+             final TableHolder holder;// = null; //ViewHolder a listához
             if (convertView == null){ //Ha még nincs meg a View, létrehozom
                 holder = new TableHolder();
                 LayoutInflater inflater = Tables.this.getLayoutInflater();
+
                 convertView = inflater.inflate(R.layout.tables_item, null); //Layout beállítása
 
                 holder.name = (Button) convertView.findViewById(R.id.name); //Asztalok hozzáadása
-                holder.name.setText(arr_tables.get(position).getName());
-                switch (arr_tables.get(position).getState()){ //Az asztal állapota alapján a gomb hátterének beállítása
-                    case "szabad":
-                        holder.name.setBackgroundColor(Color.GREEN);
-                        break;
 
-                    case "foglalt":
-                        holder.name.setBackgroundColor(Color.YELLOW);
-                        break;
 
-                    case "fizet":
-                        holder.name.setBackgroundColor(Color.RED);
-                        break;
-                }
 
-                holder.name.setOnClickListener(new View.OnClickListener() { //Egy asztalra rákoppintva látható az asztalnál rendelt termékeket
-                    @Override
-                    public void onClick(View v) {
-                        textview = "";
-                        int cost = 0;
-                        List<Product> temp = arr_tables.get(position).getProducts();
-                        for (int i = 0; i < temp.size(); i++){ //A Textview összefűzése, a fizetendő összeg kiszámítása
-                            textview += temp.get(i).getName();
-                            textview += ": ";
-                            textview += temp.get(i).getQuantity();
-                            textview += "db ";
-                            int q =Integer.parseInt(temp.get(i).getQuantity());
-                            int p =Integer.parseInt(temp.get(i).getPrice());
-                            textview += String.valueOf(q*p);
-                            textview += "Ft ";
-                            cost += q*p;
-                            textview += "\n";
-                        }
-                        textview += "\n";
-                        textview += "Összesen " + String.valueOf(cost) + "Ft";
-                        products.setText(textview);
-                    }
-                });
 
                 convertView.setTag(holder);
             } else { //Ha már van View, lekérdezzük azt
                 holder = (TableHolder) convertView.getTag();
             }
+
+            holder.name.setText(arr_tables.get(position).getName());
+            switch (arr_tables.get(position).getState()){ //Az asztal állapota alapján a gomb hátterének beállítása
+                case "szabad":
+                    holder.name.setBackgroundColor(Color.GREEN);
+                    break;
+
+                case "foglalt":
+                    holder.name.setBackgroundColor(Color.YELLOW);
+                    break;
+
+                case "fizet":
+                    holder.name.setBackgroundColor(Color.RED);
+                    break;
+            }
+
+            holder.name.setOnClickListener(new View.OnClickListener() { //Egy asztalra rákoppintva látható az asztalnál rendelt termékeket
+                @Override
+                public void onClick(View v) {
+                    textview = "";
+                    int cost = 0;
+                    List<Product> temp = arr_tables.get(position).getProducts();
+                    for (int i = 0; i < temp.size(); i++){ //A Textview összefűzése, a fizetendő összeg kiszámítása
+                        textview += temp.get(i).getName();
+                        textview += ": ";
+                        textview += temp.get(i).getQuantity();
+                        textview += "db ";
+                        int q =Integer.parseInt(temp.get(i).getQuantity());
+                        int p =Integer.parseInt(temp.get(i).getPrice());
+                        textview += String.valueOf(q*p);
+                        textview += "Ft ";
+                        cost += q*p;
+                        textview += "\n";
+                    }
+                    textview += "\n";
+                    textview += "Összesen " + String.valueOf(cost) + "Ft";
+                    products.setText(textview);
+                }
+            });
+
 
             return convertView;
         }
