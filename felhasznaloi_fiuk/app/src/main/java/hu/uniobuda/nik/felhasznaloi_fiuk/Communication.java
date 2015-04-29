@@ -18,7 +18,7 @@ public class Communication {
 
     public void LoadTestTables(){
 
-        int randTestTables = rand.nextInt(30);
+        int randTestTables = rand.nextInt(30)+10;
         for (int i = 0; i <randTestTables; i++){
             Table temp = new Table();
             temp.setName(String.valueOf(i));
