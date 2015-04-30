@@ -13,10 +13,37 @@ public class Communication {
 
     public static ArrayList<Product> products;
     public static ArrayList<Table> tables;
-    Random rand = new Random();
+    public static Random rand = new Random();
+    static Boolean testMode;
+
+    public Communication(Boolean test) {
+        testMode = test;
+
+        if (testMode == true){
+
+        }
+        else{
+
+        }
 
 
-    public void LoadTestTables(){
+    }
+
+
+    //teszt mód beállítás
+    public static void SetTestModeOn(){
+        testMode = true;
+    }
+    public static void SetTestModeOff(){
+        testMode = false;
+    }
+
+
+
+
+
+    //tesztadatok feltöltése
+    public static void LoadTestTables(){
 
         int randTestTables = rand.nextInt(30)+10;
         for (int i = 0; i <randTestTables; i++){
@@ -38,8 +65,7 @@ public class Communication {
             AddTable(temp);
         }
     }
-
-    public void LoadTestProducts(){
+    public static void LoadTestProducts(){
         if (products == null){
             products = new ArrayList<Product>();
         }
@@ -63,7 +89,7 @@ public class Communication {
             products.add(temp);
         }
     }
-    public void LoadTestProductsForTables(Table table){
+    public static void LoadTestProductsForTables(Table table){
 
         int randTestProductForTables = rand.nextInt(30);
         for (int i = 0; i < randTestProductForTables; i++){
@@ -81,26 +107,45 @@ public class Communication {
             else {
                 temp.setQuantity("2");
             }
-
-
             table.addProduct(temp);
-
         }
     }
 
+    //segédfüggvények
     public void LoadMenu(ArrayList<Product> products){
         this.products = products;
     }
-    public static ArrayList<Product> GetProducts(){
-        return products;
-    }
-    public void AddTable(Table table){
+    public static void AddTable(Table table){
         if (tables == null){
             tables = new ArrayList<Table>();
         }
         tables.add(table);
     }
+
+    //kommunikáció a szerverrel
+    public static ArrayList<Product> GetProducts(){
+        return products;
+    } //menü lekérdezése
+    public static ArrayList<Product> GetTable(String tableNumber){
+        ArrayList<Product> temp = new ArrayList<Product>();
+        GetTables(); //ezután ki kell választani azt amelyik kell nekünk
+        /////
+        return temp;
+    }   //egy asztal állapotának lekérdezése
     public static ArrayList<Table> GetTables(){
+
+        if (testMode == true){
+
+            LoadTestTables();
+        }
+        else{
+            //TODO Kristóf
+
+            tables = new ArrayList<Table>(); //egyenlővé kell tenni a tables listával. HA KÜLÖN SzáL? ÉS NEM VÁRUNK RÁ, AKKOR VISSZATÉRHET A RÉGI TABLES LISTÁVAL
+        }
+
         return tables;
-    }
+    }                       //asztalok állapotának lekérdezése
+    public static void SendOrderToServer(Table table){ };               //rendelés elküldése a szervernek
+                                                            //TODO kristóf kommunikáció szerverrel; ez mindig uj table objektum legyen, hogy a szerveren könnyebb legyen lekérdezni
 }

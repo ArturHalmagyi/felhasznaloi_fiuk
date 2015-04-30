@@ -28,7 +28,7 @@ public class Guest_Main_menu extends ActionBarActivity {
         setContentView(R.layout.activity_guest_main_menu);
 
         //szerverrel való kommunikációért felelős osztály példányosítása
-        communicator = new Communication();
+        communicator = new Communication(true);
         communicator.LoadTestTables();
         communicator.LoadTestProducts();
 
