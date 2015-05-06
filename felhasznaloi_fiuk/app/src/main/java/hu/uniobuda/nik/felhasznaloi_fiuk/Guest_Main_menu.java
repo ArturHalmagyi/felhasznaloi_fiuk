@@ -31,6 +31,10 @@ public class Guest_Main_menu extends ActionBarActivity {
         communicator = new Communication(true);
         communicator.LoadTestTables();
         communicator.LoadTestProducts();
+        // SERVER TESTs
+        //Communication.SendOrderToServer(communicator.getTables().get(0));
+        //Communication.GetProductsFromServer();
+
 
         btnAzonositas = (Button) findViewById(R.id.btn_tables);
         azonositottString = "";

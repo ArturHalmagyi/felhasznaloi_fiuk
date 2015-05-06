@@ -16,6 +16,11 @@ public class Communication {
 
     public static ArrayList<Product> products;
     public static ArrayList<Table> tables;
+
+    public static ArrayList<Table> getTables() {
+        return tables;
+    }
+
     public static Random rand = new Random();
     static Boolean testMode;
     private static ComTask ServerCom = new ComTask("http://192.168.1.5");
@@ -144,6 +149,19 @@ public class Communication {
         }
         else{
             //TODO Kristóf
+            ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
+                @Override
+                public void onDownloadSuccess(String response) {
+                    Log.d("DOWNLOAD_SUCCESS:","getTablesResult:"+response);
+                    // TODO CREATE TABLE ARRAY FROM response
+                }
+
+                @Override
+                public void onDownloadFail(String errorMessage) {
+                    Log.d("DOWNLOAD_FAIL:",errorMessage);
+                }
+            });
+            ServerCom.execute("1");
 
             tables = new ArrayList<Table>(); //egyenlővé kell tenni a tables listával. HA KÜLÖN SzáL? ÉS NEM VÁRUNK RÁ, AKKOR VISSZATÉRHET A RÉGI TABLES LISTÁVAL
         }
@@ -154,12 +172,12 @@ public class Communication {
         ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
             @Override
             public void onDownloadSuccess(String response) {
-                Log.d("DOWNLOAD_SUCCESS:",response);
+                Log.d("UPLOAD_SUCCESS:","setOrderResult:"+response);
             }
 
             @Override
             public void onDownloadFail(String errorMessage) {
-                Log.d("DOWNLOAD_FAIL:",errorMessage);
+                Log.d("UPLOAD_FAIL:",errorMessage);
             }
         });
 
@@ -168,7 +186,7 @@ public class Communication {
     };               //rendelés elküldése a szervernek
 
                                                     //TODO kristóf kommunikáció szerverrel; ez mindig uj table objektum legyen, hogy a szerveren könnyebb legyen lekérdezni
-    /// output name1;quantity1|name2;quantity2...
+    /// output: name1;quantity1|name2;quantity2...
     private static String MyProductStrBuilder(ArrayList<Product> products){
         StringBuilder sb = new StringBuilder();
         Integer db = products.size();
@@ -178,7 +196,39 @@ public class Communication {
             sb.append(products.get(i).getQuantity());
             sb.append("|");
         }
-        sb.deleteCharAt(sb.length());
+        sb.deleteCharAt(sb.length()-1);
         return sb.toString();
     }
+
+    private static ArrayList<Product> StrToProduct(String str){
+        String[] ProStrs= str.split("`");
+        ArrayList<Product> products=new ArrayList<>(ProStrs.length);
+        Integer db = ProStrs.length;
+        for (int i=0;i<db;i++){
+            Integer elso = ProStrs[i].indexOf(";");
+            Integer masodik = ProStrs[i].indexOf(";",elso+1);
+            String newName=ProStrs[i].substring(0,elso);
+            String newPrice=ProStrs[i].substring(elso+1,masodik);
+            String newUnit=ProStrs[i].substring(masodik+1);
+            products.add(new Product(newPrice,newName,newUnit));
+        }
+        return products;
+    }
+
+    public static void GetProductsFromServer(){
+        //return products;
+        ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
+            @Override
+            public void onDownloadSuccess(String response) {
+                Log.d("DOWNLOAD_SUCCESS:","getMenu:"+response);
+                products = StrToProduct(response);
+            }
+
+            @Override
+            public void onDownloadFail(String errorMessage) {
+                Log.d("DOWNLOAD_FAIL:",errorMessage);
+            }
+        });
+        ServerCom.execute("0");
+    } //menü lekérdezése
 }

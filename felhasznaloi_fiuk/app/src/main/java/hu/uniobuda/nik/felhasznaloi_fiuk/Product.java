@@ -23,4 +23,10 @@ public class Product {
     ///Konstruktor
     public Product() {
     }
+
+    public Product(String price, String name, String db) {
+        this.price = price;
+        this.name = name;
+        this.db = db;
+    }
 }

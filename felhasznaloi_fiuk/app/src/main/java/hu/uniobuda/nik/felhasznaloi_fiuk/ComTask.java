@@ -79,10 +79,9 @@ public class ComTask extends AsyncTask<String, Void, String> {
 
         lData.add(new BasicNameValuePair("muvelet", muvelet));
         switch (muvelet){
-            case"1":
-                lData.add(new BasicNameValuePair("asztal", params[1]));
-                break;
-            case "2":
+            // 0: GetMenu
+            // 1: GetTables
+            case "2": // SetNewOrder
                 lData.add(new BasicNameValuePair("asztal", params[1]));
                 lData.add(new BasicNameValuePair("adat", params[2]));
                 break;
