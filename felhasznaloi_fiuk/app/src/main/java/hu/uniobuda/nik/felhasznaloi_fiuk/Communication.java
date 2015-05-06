@@ -1,5 +1,8 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import org.apache.http.NameValuePair;
 
 import java.util.ArrayList;
@@ -15,6 +18,7 @@ public class Communication {
     public static ArrayList<Table> tables;
     public static Random rand = new Random();
     static Boolean testMode;
+    private static ComTask ServerCom = new ComTask("http://192.168.1.5");
 
     public Communication(Boolean test) {
         testMode = test;
@@ -145,7 +149,36 @@ public class Communication {
         }
 
         return tables;
-    }                       //asztalok állapotának lekérdezése
-    public static void SendOrderToServer(Table table){ };               //rendelés elküldése a szervernek
-                                                            //TODO kristóf kommunikáció szerverrel; ez mindig uj table objektum legyen, hogy a szerveren könnyebb legyen lekérdezni
+    }//asztalok állapotának lekérdezése
+    public static void SendOrderToServer(Table table){
+        ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
+            @Override
+            public void onDownloadSuccess(String response) {
+                Log.d("DOWNLOAD_SUCCESS:",response);
+            }
+
+            @Override
+            public void onDownloadFail(String errorMessage) {
+                Log.d("DOWNLOAD_FAIL:",errorMessage);
+            }
+        });
+
+        ServerCom.execute("2",table.getName(),MyProductStrBuilder(table.getProducts()));
+
+    };               //rendelés elküldése a szervernek
+
+                                                    //TODO kristóf kommunikáció szerverrel; ez mindig uj table objektum legyen, hogy a szerveren könnyebb legyen lekérdezni
+    /// output name1;quantity1|name2;quantity2...
+    private static String MyProductStrBuilder(ArrayList<Product> products){
+        StringBuilder sb = new StringBuilder();
+        Integer db = products.size();
+        for (int i=0;i<db;i++){
+            sb.append(products.get(i).getName());
+            sb.append(";");
+            sb.append(products.get(i).getQuantity());
+            sb.append("|");
+        }
+        sb.deleteCharAt(sb.length());
+        return sb.toString();
+    }
 }
