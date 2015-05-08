@@ -28,5 +28,6 @@ public class Product {
         this.price = price;
         this.name = name;
         this.db = db;
+        this.quantity = "0";
     }
 }

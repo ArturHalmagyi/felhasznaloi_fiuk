@@ -23,7 +23,11 @@ public class Communication {
 
     public static Random rand = new Random();
     static Boolean testMode;
-    private static ComTask ServerCom = new ComTask("http://192.168.1.5");
+    private static ComTask ServerCom = new ComTask("http://192.168.43.183");
+
+    public static ComTask getServerCom() {
+        return ServerCom;
+    }
 
     public Communication(Boolean test) {
         testMode = test;
@@ -230,5 +234,6 @@ public class Communication {
             }
         });
         ServerCom.execute("0");
+
     } //menü lekérdezése
 }
