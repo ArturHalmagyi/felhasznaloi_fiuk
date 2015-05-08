@@ -23,7 +23,7 @@ public class Communication {
 
     public static Random rand = new Random();
     static Boolean testMode;
-    private static ComTask ServerCom = new ComTask("http://192.168.1.5");
+    private static ComTask ServerCom = new ComTask("http://192.168.43.183");
 
     public Communication(Boolean test) {
         testMode = test;

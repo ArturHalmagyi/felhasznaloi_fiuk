@@ -28,13 +28,15 @@ public class Guest_Main_menu extends ActionBarActivity {
         setContentView(R.layout.activity_guest_main_menu);
 
         //szerverrel való kommunikációért felelős osztály példányosítása
-        communicator = new Communication(true);
-        communicator.LoadTestTables();
-        communicator.LoadTestProducts();
+        //communicator = new Communication(true);
+        //communicator.LoadTestTables();
+        //communicator.LoadTestProducts();
         // SERVER TESTs
         //Communication.SendOrderToServer(communicator.getTables().get(0));
-        //Communication.GetProductsFromServer();
 
+        if(Communication.products == null){
+            Communication.GetProductsFromServer();
+        }
 
         btnAzonositas = (Button) findViewById(R.id.btn_tables);
         azonositottString = "";

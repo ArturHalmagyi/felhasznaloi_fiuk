@@ -134,6 +134,7 @@ public class ComTask extends AsyncTask<String, Void, String> {
         //super.onPostExecute(s);
         //Toast.makeText(mainContext,"OnPostExecute message: "+s,Toast.LENGTH_LONG).show();
         postDownloadSuccess(s); // TODO: [Kristóf] eredmény ellenőrzése ??
+
         //result = s;
     }
 

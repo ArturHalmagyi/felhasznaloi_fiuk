@@ -40,8 +40,10 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_meal);
 
+        //Communication.GetProductsFromServer();
+
         products = new ArrayList<NameValuePair>();
-        Populate_List(products); //TODO ez később a szerver lesz
+        //Populate_List(products); //TODO ez később a szerver lesz
 
         ///test
         arr = new ArrayList<Product>();
@@ -74,6 +76,17 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) { //Az actionbaron szereplő rendelés gombra koppintva lehet rendelni
         if (item.getItemId() == R.id.submit){
             Submit_Click();
@@ -82,6 +95,9 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
             return super.onOptionsItemSelected(item);
         }
     }
+
+
+
 
     void Submit_Click(){
         String s = "";
