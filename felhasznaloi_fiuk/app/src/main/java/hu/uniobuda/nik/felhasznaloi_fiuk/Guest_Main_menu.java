@@ -12,6 +12,9 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 
 public class Guest_Main_menu extends ActionBarActivity {
@@ -33,10 +36,12 @@ public class Guest_Main_menu extends ActionBarActivity {
         //communicator.LoadTestProducts();
         // SERVER TESTs
         //Communication.SendOrderToServer(communicator.getTables().get(0));
+        Communication.products=null;
+        //Communication.GetProductsFromServer();
 
-        if(Communication.products == null){
-            Communication.GetProductsFromServer();
-        }
+
+
+
 
         btnAzonositas = (Button) findViewById(R.id.btn_tables);
         azonositottString = "";
@@ -53,6 +58,24 @@ public class Guest_Main_menu extends ActionBarActivity {
         btnMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    Communication.GetProductsFromServer();
+                    Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (TimeoutException e) {
+                    e.printStackTrace();
+                }
+                /*
+                Communication.products = null;
+                Communication.GetProductsFromServer();
+                int i=0;
+                while (Communication.products == null) {
+                    i++;
+                    Toast.makeText(Guest_Main_menu.this,"még null "+i,Toast.LENGTH_SHORT).show();
+                }*/
                 Intent intent = new Intent(Guest_Main_menu.this, Guest_Meal.class);
 
                 startActivity(intent);

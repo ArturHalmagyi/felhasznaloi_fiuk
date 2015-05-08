@@ -138,6 +138,7 @@ public class ComTask extends AsyncTask<String, Void, String> {
         //result = s;
     }
 
+
 // Interface
     public interface onConnectionListener{
         void onDownloadSuccess(String response);
@@ -156,4 +157,5 @@ public class ComTask extends AsyncTask<String, Void, String> {
             products.get(i).getName()
         }
     }*/
+
 }
