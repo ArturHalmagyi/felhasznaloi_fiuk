@@ -1,5 +1,6 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,8 +15,11 @@ import java.util.Random;
 
 public class Communication {
 
+    public static Context context;
+
     public static ArrayList<Product> products;
     public static ArrayList<Table> tables;
+    public static String ip = "http://192.168.43.183";
 
     public static ArrayList<Table> getTables() {
         return tables;
@@ -23,14 +27,16 @@ public class Communication {
 
     public static Random rand = new Random();
     static Boolean testMode;
-    private static ComTask ServerCom = new ComTask("http://192.168.43.183");
+    private static ComTask ServerCom;
 
     public static ComTask getServerCom() {
         return ServerCom;
     }
 
-    public Communication(Boolean test) {
+    public Communication(Boolean test, Context context) {
         testMode = test;
+        this.context = context;
+
 
         if (testMode == true){
 
@@ -221,6 +227,7 @@ public class Communication {
 
     public static void GetProductsFromServer(){
         //return products;
+        ServerCom = new ComTask(ip, context);
         ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
             @Override
             public void onDownloadSuccess(String response) {

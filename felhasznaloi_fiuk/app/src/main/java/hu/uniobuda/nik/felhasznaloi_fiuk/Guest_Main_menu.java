@@ -1,5 +1,6 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -26,10 +27,16 @@ public class Guest_Main_menu extends ActionBarActivity {
     public static Communication communicator;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_main_menu);
 
+        communicator = new Communication(false, this);
         //szerverrel való kommunikációért felelős osztály példányosítása
         //communicator = new Communication(true);
         //communicator.LoadTestTables();
@@ -38,10 +45,6 @@ public class Guest_Main_menu extends ActionBarActivity {
         //Communication.SendOrderToServer(communicator.getTables().get(0));
         Communication.products=null;
         //Communication.GetProductsFromServer();
-
-
-
-
 
         btnAzonositas = (Button) findViewById(R.id.btn_tables);
         azonositottString = "";
@@ -59,8 +62,16 @@ public class Guest_Main_menu extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Communication.GetProductsFromServer();
-                    Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+                    //Communication.getServerCom().setContext(Guest_Main_menu.this);
+                    //Communication.products = null;
+                    ProgressDialog pd = new ProgressDialog(Guest_Main_menu.this);
+                    pd.setMessage("Processing...");
+                    pd.show();
+                    //if (Communication.products == null) {
+                        Communication.GetProductsFromServer();
+                        Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+                    //}
+                    pd.dismiss();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

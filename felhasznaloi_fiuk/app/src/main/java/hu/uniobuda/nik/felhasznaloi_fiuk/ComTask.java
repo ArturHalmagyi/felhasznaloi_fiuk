@@ -1,5 +1,9 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
+import android.app.AlertDialog;
+import android.app.Application;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
@@ -34,10 +38,25 @@ public class ComTask extends AsyncTask<String, Void, String> {
     private onConnectionListener onConnectionListener;
     List<NameValuePair>  lData;
 
-    public ComTask(String SERVER_IP) {
+    Context context;
+    ProgressDialog dialog;
+    public Context getContext() {
+        return context;
+    }
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+
+    public ComTask(String SERVER_IP, Context context) {
         this.SERVER_IP = SERVER_IP;
         this.myHandler = new Handler(Looper.getMainLooper());
         lData = new ArrayList<NameValuePair>();
+
+        this.context = context;
+        dialog = new ProgressDialog(context, ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
+        dialog.setMessage("Dingo");
+
     }
 
     public ComTask() {
@@ -64,7 +83,7 @@ public class ComTask extends AsyncTask<String, Void, String> {
             }
         });
     }
-// ConnectionListener
+    // ConnectionListener
     public void setOnConnectionListener(onConnectionListener onConnectionListener){
         this.onConnectionListener=onConnectionListener;
     }
@@ -119,6 +138,11 @@ public class ComTask extends AsyncTask<String, Void, String> {
     }
 
     @Override
+    protected void onPreExecute() {
+        //dialog.show();
+    }
+
+    @Override
     protected String doInBackground(String... params) {
         try {
             return postDataToServer(params);
@@ -134,6 +158,7 @@ public class ComTask extends AsyncTask<String, Void, String> {
         //super.onPostExecute(s);
         //Toast.makeText(mainContext,"OnPostExecute message: "+s,Toast.LENGTH_LONG).show();
         postDownloadSuccess(s); // TODO: [Kristóf] eredmény ellenőrzése ??
+        //dialog.dismiss();
 
         //result = s;
     }
