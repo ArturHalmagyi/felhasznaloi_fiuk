@@ -1,5 +1,6 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 
 public class Staff_Login extends ActionBarActivity {
@@ -47,16 +52,42 @@ public class Staff_Login extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     public void login(View view){
+
+
+        ProgressDialog pd = new ProgressDialog(Staff_Login.this);
+        pd.setMessage("Processing...");
+        pd.show();
+
         Communication.Authentication(username.getText().toString(),password.getText().toString());
+
+        if (!Communication.testMode){
+            try {
+
+                Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (TimeoutException e) {
+                e.printStackTrace();
+            }
+        }
+        pd.dismiss();
+
+
+
         if(Communication.staff)
         { Toast.makeText(this, "sikeres azonositas",
                     Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, Staff_Main_menu.class);
         startActivity(intent);
-    } else {
+        }
+        else {
         Toast.makeText(this, "nem nyert",
                 Toast.LENGTH_LONG).show();
-    }
+        }
        /* if(username.getText().toString().equals("A") &&
                 password.getText().toString().equals("a")){
             Toast.makeText(this, "sikeres azonositas",
