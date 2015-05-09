@@ -44,14 +44,7 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
         textview = "";
         products = (TextView) findViewById(R.id.products);
 
-        //ListView konfigurálása
-        //arr_tables = new ArrayList<Table>();
-        //Populate_Tables(); //TODO ez majd szerver lesz GOMBRÓL HIVODIK MEG A COMMUNICATION.GETTABLES();
-
-        //Kommunikáció osztály asztalok lekérdezésének metódusa meghívódik
-        //Communication.getTables(); //TODO TODO
-
-        arr_tables = Communication.tables;
+        arr_tables = Communication.tables; //Az activity létrehozásánál már létrejött az asztallista(szervertől vagy belül), így itt elég csak lekérdezni
 
         t_adapt = new TableAdapter();
         tables = (ListView) findViewById(R.id.tables);
@@ -62,19 +55,14 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_tables, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+    public boolean onOptionsItemSelected(MenuItem item) { //A frissítés gombra lekérdezi újra az asztalok listáját
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.refresh) {
             try {
                 ProgressDialog pd = new ProgressDialog(Tables.this);
@@ -87,7 +75,7 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
                 pd.dismiss();
 
                 arr_tables = Communication.tables;
-                t_adapt.notifyDataSetChanged();
+                t_adapt.notifyDataSetChanged(); //Frissíteni kell az adaptert, hiszen a lekérdezés után megváltozhat az asztalok állapota
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -188,38 +176,5 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
             public Button state;
         }
 
-    }
-
-    void Populate_Tables(){
-        Product p1 = new Product();
-        p1.setName("Kávé");
-        p1.setPrice("800");
-        p1.setDb("db");
-        p1.setQuantity("3");
-
-        Product p2 = new Product();
-        p2.setName("Sütike");
-        p2.setPrice("1300");
-        p2.setDb("db");
-        p2.setQuantity("2");
-
-        Table t1 = new Table();
-        t1.setName("1. asztal");
-        t1.setState("szabad");
-
-        Table t2 = new Table();
-        t2.setName("2. asztal");
-        t2.setState("foglalt");
-        t2.addProduct(p1);
-
-        Table t3 = new Table();
-        t3.setName("3. asztal");
-        t3.setState("fizet");
-        t3.addProduct(p2);
-
-
-        arr_tables.add(t1);
-        arr_tables.add(t2);
-        arr_tables.add(t3);
     }
 }

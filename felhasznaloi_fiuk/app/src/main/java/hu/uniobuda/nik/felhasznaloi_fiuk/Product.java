@@ -24,6 +24,7 @@ public class Product {
     public Product() {
     }
 
+    //A szerver miatt szükséges egy bemeneti paraméterekkel rendelkező konstruktorra is
     public Product(String price, String name, String db, String quantity) {
         this.price = price;
         this.name = name;

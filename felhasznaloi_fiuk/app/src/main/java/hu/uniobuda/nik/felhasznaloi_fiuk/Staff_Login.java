@@ -70,16 +70,12 @@ public class Staff_Login extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_staff_login, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         return super.onOptionsItemSelected(item);
@@ -119,15 +115,5 @@ public class Staff_Login extends ActionBarActivity {
         Toast.makeText(this, getResources().getString(R.string.layout_activity_staff_login_rossz),
                 Toast.LENGTH_LONG).show();
         }
-       /* if(username.getText().toString().equals("A") &&
-                password.getText().toString().equals("a")){
-            Toast.makeText(this, "sikeres azonositas",
-                    Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, Staff_Main_menu.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "nem nyert",
-                    Toast.LENGTH_LONG).show();
-        }*/
     }
 }
