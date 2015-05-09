@@ -65,6 +65,7 @@
         android:id="@+id/button"
         android:onClick="login"
         android:layout_below="@+id/editText2"
+        android:background="@drawable/button_color"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp" />
 
