@@ -11,8 +11,18 @@
 
 
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/edit_password"
+        android:layout_below="@+id/password"
+        android:layout_centerHorizontal="true"
+        />
+
     <TextView
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="70dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -44,16 +54,6 @@
         android:layout_below="@id/edit_username"
         android:layout_alignStart="@id/edit_password"
         android:layout_alignLeft="@id/edit_password"
-        />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/edit_password"
-        android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
         />
 
     <Button
