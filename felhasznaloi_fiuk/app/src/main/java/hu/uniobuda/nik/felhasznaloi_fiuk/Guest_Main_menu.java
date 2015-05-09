@@ -22,15 +22,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 
-public class Guest_Main_menu extends ActionBarActivity {
+public class Guest_Main_menu extends ActionBarActivity { //Ez a fő activity, ami launcherként is szolgál, innen lehet minden funkciót elérni
 
-    Button btnID;
-    Button btnMeal;
-    Button btnPay;
-    Button btnMyOrders;
-    //String table_id;
-    // szerverrel való kommunikációért felelős példány
-    //public static Communication communicator;
+    Button btnID; //Az azonosító gomb
+    Button btnMeal; //Menüt meghívó gomb
+    Button btnPay; //Fizetést jelző gomb
+    Button btnMyOrders; //Megrendeléseket lekérdező gomb
 
     @Override
     protected void onResume() {
@@ -42,25 +39,15 @@ public class Guest_Main_menu extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_main_menu);
 
-
-        Communication.SetTestModeOn();
-        //communicator = new Communication(true, this);
-        //Communication.SetTestModeOn();
-        //szerverrel való kommunikációért felelős osztály példányosítása
-        //communicator = new Communication(true);
-        //communicator.LoadTestTables();
-        //communicator.LoadTestProducts();
-        // SERVER TESTs
-        //Communication.SendOrderToServer(communicator.getTables().get(0));
+        Communication.SetTestModeOn(); //A tesztmóddal lehet a szerverrel való kapcsolat nélkül is tesztelni a funkciókat
         Communication.products=null;
-        //Communication.GetProductsFromServer();
 
         btnID = (Button) findViewById(R.id.btn_tables);
         btnID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(Guest_Main_menu.this);
-                integrator.initiateScan(integrator.QR_CODE_TYPES);
+                integrator.initiateScan(integrator.QR_CODE_TYPES); //A QR-kór olvasó elindítása
             }
         });
 
@@ -69,18 +56,15 @@ public class Guest_Main_menu extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    //Communication.getServerCom().setContext(Guest_Main_menu.this);
-                    //Communication.products = null;
+
                     ProgressDialog pd = new ProgressDialog(Guest_Main_menu.this);
                     pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
                     pd.show();
-                    //if (Communication.products == null) {
-                        //Communication.GetProductsFromServer();
+                    //Elindítja a kommunikáció osztály asztal lekérdezését, mely után elérhetjük az ott tárolt adatokat
                     Communication.GetProducts();
                     if (!Communication.testMode) {
                         Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
                     }
-                    //}
                     pd.dismiss();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -89,16 +73,9 @@ public class Guest_Main_menu extends ActionBarActivity {
                 } catch (TimeoutException e) {
                     e.printStackTrace();
                 }
-                /*
-                Communication.products = null;
-                Communication.GetProductsFromServer();
-                int i=0;
-                while (Communication.products == null) {
-                    i++;
-                    Toast.makeText(Guest_Main_menu.this,"még null "+i,Toast.LENGTH_SHORT).show();
-                }*/
+
+                //A menü activity elindítása
                 Intent intent = new Intent(Guest_Main_menu.this, Guest_Meal.class);
-                //intent.putExtra("table_id", table_id);
                 startActivity(intent);
             }
         });
@@ -107,6 +84,7 @@ public class Guest_Main_menu extends ActionBarActivity {
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //A fizetési igény elküldése a szervernek
                 if (Communication.testMode){
                     Toast.makeText(Guest_Main_menu.this,getResources().getString(R.string.layout_activity_guest_main_menu_fizetek), Toast.LENGTH_LONG).show();
                 }
@@ -115,10 +93,12 @@ public class Guest_Main_menu extends ActionBarActivity {
                 }
             }
         });
+
         btnMyOrders = (Button) findViewById(R.id.btn_order);
         btnMyOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Az azonosított asztal rendeléseinek lekérdezése
                 if (Communication.table_id != "") {
                     ProgressDialog pd = new ProgressDialog(Guest_Main_menu.this);
                     pd.setMessage("Processing...");
@@ -137,22 +117,21 @@ public class Guest_Main_menu extends ActionBarActivity {
                         }
                     }
                     pd.dismiss();
+
                     Communication.GetTable(Communication.table_id);
-                    if (Communication.actualTable.products.size() > 0) {
+
+                    if (Communication.actualTable.products.size() > 0) { //Ha van rendelt termék, kijelzi azokat, ha nincs, szól
                         Toast.makeText(Guest_Main_menu.this, Communication.actualTable.getName() + String.valueOf(Communication.actualTable.products.size()), Toast.LENGTH_LONG).show();
-                        AlertDialog.Builder dlgAlert= new AlertDialog.Builder(Guest_Main_menu.this);
-                        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Guest_Main_menu.this,R.layout.activity_guest_main_menu);
-                        //arrayAdapter.add(Communication.actualTable.products.get(0).toString());
+                        AlertDialog.Builder dlgAlert= new AlertDialog.Builder(Guest_Main_menu.this); //Felugró ablak létrehozása
 
                         String temp = "";
                         int len = Communication.actualTable.products.size();
 
+
+                        //Az ablak tartalmának összefűzése 'Termék: x db y Ft' formátumban, a végösszeggel együtt
                         List<Product> tempProductList = Communication.actualTable.products;
                         int cost = 0;
                         for (int i = 0; i < len; i++){
-
-                            //temp += Communication.actualTable.products.get(i);
-
                             temp += tempProductList.get(i).getName();
                             temp += ": ";
                             temp += tempProductList.get(i).getQuantity();
@@ -169,42 +148,34 @@ public class Guest_Main_menu extends ActionBarActivity {
 
 
                         dlgAlert.setMessage(temp);
-                        //dlgAlert.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-                            //@Override
-                            //public void onClick(DialogInterface dialog, int which) {
-                            //}
-                       // });
-                        dlgAlert.setTitle("megrendelések");
+                        dlgAlert.setTitle("Megrendelések");
                         dlgAlert.setPositiveButton("OK",null);
                         dlgAlert.setCancelable(true);
-                        dlgAlert.create().show();
+                        dlgAlert.create().show(); //Az ablak megjelenítése
                     }
                     else{
-                        Toast.makeText(Guest_Main_menu.this,"Nincs rendelése", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Guest_Main_menu.this,getResources().getString(R.string.layout_activity_guest_main_menu_nincs_rendelés), Toast.LENGTH_LONG).show();
                     }
-                    //todo megjeleniteni a tartalmat
                 }
                 else{
-                    Toast.makeText(Guest_Main_menu.this,"Azonositsa az asztalt", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Guest_Main_menu.this,getResources().getString(R.string.layout_activity_guest_main_menu_nincs_azon), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-    public void startLogin(View view)
+    public void startLogin(View view) //A személyzet gombra kattintva elindul a login activity
     {
         Intent intent = new Intent(this, Staff_Login.class);
         startActivity(intent);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) { // A QR azonosításnál a fragment értékét itt dolgozzuk fel
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (result != null) {
             String contents = result.getContents();
             Communication.table_id = result.getContents();
-            //table_id = result.getContents();
-            if (contents != null) {
-                //showDialog(R.string.result_succeeded, result.toString());
+            if (contents != null) { //Ha baj volt az azonosítással, azt kiírjuk
                 Toast.makeText(this, Communication.table_id, Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this,getResources().getString(R.string.layout_activity_guest_main_menu_qr_nemjo),Toast.LENGTH_LONG);
@@ -214,19 +185,13 @@ public class Guest_Main_menu extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_guest_main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-
         return super.onOptionsItemSelected(item);
     }
 }

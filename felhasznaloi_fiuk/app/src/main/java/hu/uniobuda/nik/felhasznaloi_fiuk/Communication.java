@@ -93,7 +93,7 @@ public class Communication {
     }
     public static void SendOrder(Table table){
         if (testMode){
-             //TODO string ami meg a szervernek
+            //TODO string ami meg a szervernek
         }
         else{
             SendOrderToServer(table);
