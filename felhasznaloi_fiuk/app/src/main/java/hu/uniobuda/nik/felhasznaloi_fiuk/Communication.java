@@ -60,7 +60,6 @@ public class Communication {
         }
     } //menü lekérdezése
     public static void GetTable(String tableNumber){
-        //ArrayList<Product> temp = new ArrayList<Product>();
         Table temp = new Table();
         int i = 0;
         while (i < Communication.tables.size() && !Communication.tables.get(i).getName().equals(tableNumber)){
@@ -81,7 +80,6 @@ public class Communication {
     }  //az összes asztal állapotának lekérése
     public static void SendOrder(Table table){
         if (testMode){
-            //TODO string ami meg a szervernek
         }
         else{
             SendOrderToServer(table);
@@ -97,7 +95,6 @@ public class Communication {
     }  //Autentikáció
     public static void SendPayRequest(String tableNumber){
         if (testMode){
-
         }
         else{
             SendPayRequestToServer(tableNumber);

@@ -44,15 +44,6 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".Staff_Meal"
-            android:label="@string/title_activity_staff__meal"
-            android:parentActivityName=".Staff_Main_menu" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="hu.uniobuda.nik.felhasznaloi_fiuk.Staff_Main_menu" />
-        </activity>
-        <activity
-            android:screenOrientation="portrait"
             android:name=".Tables"
             android:label="@string/title_activity_tables"
             android:parentActivityName=".Staff_Main_menu" >
