@@ -82,11 +82,14 @@ public class Communication {
     }
     public static void SendOrder(Table table){
         if (testMode){
-            Toast.makeText(context,"Rendelés elküldve", Toast.LENGTH_LONG);
+            Toast.makeText(context,"Rendelés elküldve", Toast.LENGTH_LONG); //TODO string ami meg a szervernek
         }
         else{
             SendOrderToServer(table);
         }
+    }
+    public static void Authentication(){
+
     }
 
 
