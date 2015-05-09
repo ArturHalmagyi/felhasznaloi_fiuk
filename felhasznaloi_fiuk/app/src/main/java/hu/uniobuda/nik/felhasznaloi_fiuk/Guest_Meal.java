@@ -47,7 +47,8 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
 
         ///test
         arr = new ArrayList<Product>();
-        arr = Communication.GetProducts();
+        //arr = Communication.GetProducts();
+        arr = Communication.products;
 
 /*+
         arr = new ArrayList<Product>();

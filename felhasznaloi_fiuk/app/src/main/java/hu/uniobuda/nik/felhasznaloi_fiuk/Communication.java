@@ -37,15 +37,14 @@ public class Communication {
         testMode = test;
         this.context = context;
 
-
+/*
         if (testMode == true){
 
         }
         else{
 
         }
-
-
+        */
     }
 
 
@@ -56,8 +55,6 @@ public class Communication {
     public static void SetTestModeOff(){
         testMode = false;
     }
-
-
 
 
 
@@ -142,8 +139,13 @@ public class Communication {
     }
 
     //kommunikáció a szerverrel
-    public static ArrayList<Product> GetProducts(){
-        return products;
+    public static void GetProducts(){
+        if (testMode){
+            LoadTestProducts();
+        }
+        else {
+            GetProductsFromServer();
+        }
     } //menü lekérdezése
     public static ArrayList<Product> GetTable(String tableNumber){
         ArrayList<Product> temp = new ArrayList<Product>();
@@ -153,7 +155,7 @@ public class Communication {
     }   //egy asztal állapotának lekérdezése
     public static ArrayList<Table> GetTables(){
 
-        if (testMode == true){
+        if (testMode){
 
             LoadTestTables();
         }

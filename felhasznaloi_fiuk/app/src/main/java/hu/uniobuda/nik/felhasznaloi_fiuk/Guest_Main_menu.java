@@ -36,7 +36,7 @@ public class Guest_Main_menu extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_main_menu);
 
-        communicator = new Communication(false, this);
+        communicator = new Communication(true, this);
         //szerverrel való kommunikációért felelős osztály példányosítása
         //communicator = new Communication(true);
         //communicator.LoadTestTables();
@@ -68,8 +68,11 @@ public class Guest_Main_menu extends ActionBarActivity {
                     pd.setMessage("Processing...");
                     pd.show();
                     //if (Communication.products == null) {
-                        Communication.GetProductsFromServer();
+                        //Communication.GetProductsFromServer();
+                    Communication.GetProducts();
+                    if (!Communication.testMode) {
                         Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+                    }
                     //}
                     pd.dismiss();
                 } catch (InterruptedException e) {
