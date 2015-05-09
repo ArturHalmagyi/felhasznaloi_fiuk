@@ -63,7 +63,6 @@ public class Staff_Login extends ActionBarActivity {
                     Toast.makeText(Staff_Login.this, getResources().getString(R.string.layout_activity_staff_login_rossz),
                             Toast.LENGTH_LONG).show();
                 }
-
             }
         });
     }
