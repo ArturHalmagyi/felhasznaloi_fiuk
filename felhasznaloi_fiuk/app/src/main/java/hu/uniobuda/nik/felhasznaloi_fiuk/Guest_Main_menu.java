@@ -2,6 +2,7 @@ package hu.uniobuda.nik.felhasznaloi_fiuk;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -141,7 +142,14 @@ public class Guest_Main_menu extends ActionBarActivity {
                         AlertDialog.Builder dlgAlert= new AlertDialog.Builder(Guest_Main_menu.this);
                         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Guest_Main_menu.this,R.layout.activity_guest_main_menu);
                         arrayAdapter.add(Communication.actualTable.products.get(0).toString());
-                        dlgAlert.setMessage("valami");
+                        //dlgAlert.setMessage("valami");
+                        dlgAlert.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+
                         dlgAlert.setTitle("megrendelések");
                         dlgAlert.setPositiveButton("OK",null);
                         dlgAlert.setCancelable(true);
