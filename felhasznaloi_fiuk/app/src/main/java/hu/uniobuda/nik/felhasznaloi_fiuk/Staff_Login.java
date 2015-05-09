@@ -31,6 +31,9 @@ public class Staff_Login extends ActionBarActivity {
         username = (EditText)findViewById(R.id.edit_username);
         password = (EditText)findViewById(R.id.edit_password);
 
+        username.setText("nem");//Ez a könnyebb értékelést szolgálja :)
+        password.setText("nem");
+
         btnLogin = (Button) findViewById(R.id.button);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
