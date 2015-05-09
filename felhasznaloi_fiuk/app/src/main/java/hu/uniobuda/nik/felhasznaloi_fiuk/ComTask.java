@@ -36,7 +36,7 @@ public class ComTask extends AsyncTask<String, Void, String> {
     String SERVER_IP;
     Handler myHandler;
     private onConnectionListener onConnectionListener;
-    List<NameValuePair>  lData;
+    List<NameValuePair>  lData; // átküldésre kijelölt adatok itten lesznek
 
 
     public ComTask(String SERVER_IP) {
@@ -120,7 +120,7 @@ public class ComTask extends AsyncTask<String, Void, String> {
         }
         return resultStr;
     }
-    // beérkező stream olvasása
+    // beérkező stream olvasása String-re
     private String StreamConverter(InputStream is) throws IOException, UnsupportedEncodingException{
         Reader reader = null;
         reader = new InputStreamReader(is, "UTF-8");
@@ -145,7 +145,7 @@ public class ComTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        postDownloadSuccess(s);
+        postDownloadSuccess(s); // szerver kommunikáció után
     }
 
 // Interface
