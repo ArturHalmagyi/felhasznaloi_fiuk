@@ -183,8 +183,8 @@ public class Communication {
         }
     }
     public static void AuthenticationTest(String user, String pass){
-        if(user.equals("Barni")&&
-                pass.equals("langyi"))
+        if(user.equals("nem")&&
+                pass.equals("nem"))
             staff=true;
 
     }
