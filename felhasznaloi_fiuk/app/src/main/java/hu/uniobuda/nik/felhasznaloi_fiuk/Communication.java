@@ -241,7 +241,13 @@ public class Communication {
     }
     public static ArrayList<Table> StrToTable(String str) {
         String[] StrTables= str.split("!");
-        ArrayList<Table> tables=new ArrayList<Table>(StrTables.length);
+        ArrayList<Table> tables=new ArrayList<Table>(14);
+        for(int i=0;i<14;i++){
+            Table temp=new Table();
+            temp.setName(String.valueOf(i+1));
+            temp.setState("szabad");
+            tables.add(temp);
+        }
         for (int i=0 ; i < StrTables.length ; i++){
             int dollar=StrTables[i].indexOf("$");
             int szazalek=StrTables[i].indexOf("%");
@@ -253,7 +259,8 @@ public class Communication {
             tempTable.setName(tName);
             tempTable.setState(tStatus);
             tempTable.setProducts(tProducts);
-            tables.add(tempTable);
+            //tables.add(Integer.parseInt(tName)-1,tempTable);
+            tables.set(Integer.parseInt(tName)-1,tempTable);
         }
         return tables;
     }
