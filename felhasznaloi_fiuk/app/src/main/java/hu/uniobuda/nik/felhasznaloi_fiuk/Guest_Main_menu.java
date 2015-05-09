@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -140,14 +141,39 @@ public class Guest_Main_menu extends ActionBarActivity {
                     if (Communication.actualTable.products.size() > 0) {
                         Toast.makeText(Guest_Main_menu.this, Communication.actualTable.getName() + String.valueOf(Communication.actualTable.products.size()), Toast.LENGTH_LONG).show();
                         AlertDialog.Builder dlgAlert= new AlertDialog.Builder(Guest_Main_menu.this);
-                        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Guest_Main_menu.this,R.layout.activity_guest_main_menu);
-                        arrayAdapter.add(Communication.actualTable.products.get(0).toString());
-                        //dlgAlert.setMessage("valami");
-                        dlgAlert.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        });
+                        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Guest_Main_menu.this,R.layout.activity_guest_main_menu);
+                        //arrayAdapter.add(Communication.actualTable.products.get(0).toString());
+
+                        String temp = "";
+                        int len = Communication.actualTable.products.size();
+
+                        List<Product> tempProductList = Communication.actualTable.products;
+                        int cost = 0;
+                        for (int i = 0; i < len; i++){
+
+                            //temp += Communication.actualTable.products.get(i);
+
+                            temp += tempProductList.get(i).getName();
+                            temp += ": ";
+                            temp += tempProductList.get(i).getQuantity();
+                            temp += "db ";
+                            int q =Integer.parseInt(tempProductList.get(i).getQuantity());
+                            int p =Integer.parseInt(tempProductList.get(i).getPrice());
+                            temp += String.valueOf(q*p);
+                            temp += "Ft ";
+                            cost += q*p;
+                            temp += "\n";
+                        }
+                        temp += "\n";
+                        temp += "Összesen " + String.valueOf(cost) + "Ft";
+
+
+                        dlgAlert.setMessage(temp);
+                        //dlgAlert.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                            //@Override
+                            //public void onClick(DialogInterface dialog, int which) {
+                            //}
+                       // });
                         dlgAlert.setTitle("megrendelések");
                         dlgAlert.setPositiveButton("OK",null);
                         dlgAlert.setCancelable(true);
