@@ -19,6 +19,8 @@
     <string name="layout_activity_guest_main_menu_fizetek">Fizetését jeleztük!</string>
     <string name="layout_activity_guest_main_menu_qr_nemjo">Nem jó!</string>
     <string name="layout_activity_guest_main_menu_dolgozom">Kérjük várjon...</string>
+    <string name="layout_activity_guest_main_menu_nincs_rendelés">Ön még nem rendelt semmit!</string>
+    <string name="layout_activity_guest_main_menu_nincs_azon">Azonosítsa az asztalt!</string>
 
     <!-- Guest meal -->
     <string name="layout_guest_meal_product">Termék</string>

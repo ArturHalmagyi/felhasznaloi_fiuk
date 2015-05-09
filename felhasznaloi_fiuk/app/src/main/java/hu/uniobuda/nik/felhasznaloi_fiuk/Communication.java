@@ -83,7 +83,7 @@ public class Communication {
     }  //az összes asztal állapotának lekérése
     public static void SendOrder(Table table){
         if (testMode){
-             //TODO string ami meg a szervernek
+            //TODO string ami meg a szervernek
         }
         else{
             SendOrderToServer(table);
