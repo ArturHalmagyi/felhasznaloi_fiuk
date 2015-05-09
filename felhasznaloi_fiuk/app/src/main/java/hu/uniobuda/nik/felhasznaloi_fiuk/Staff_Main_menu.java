@@ -20,7 +20,7 @@ import java.util.concurrent.TimeoutException;
 
 public class Staff_Main_menu extends ActionBarActivity {
 
-    //Button btnAzonositas;
+    //Button btnID;
     String azonositottString;
 
     Button btn_tables;
@@ -31,10 +31,10 @@ public class Staff_Main_menu extends ActionBarActivity {
         setContentView(R.layout.activity_staff_main_menu);
 
 
-        //btnAzonositas = (Button) findViewById(R.id.btn_tables);
+        //btnID = (Button) findViewById(R.id.btn_tables);
         azonositottString = "";
 
-        /*btnAzonositas.setOnClickListener(new View.OnClickListener() {
+        /*btnID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(Staff_Main_menu.this);
