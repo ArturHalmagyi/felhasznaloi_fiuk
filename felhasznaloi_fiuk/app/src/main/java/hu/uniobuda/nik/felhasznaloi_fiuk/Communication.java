@@ -90,7 +90,7 @@ public class Communication {
     }
     public static void Authentication(String user, String pass){
         if (testMode){
-
+                AuthenticationTest(user,pass);
         }
         else {
             AuthenticationOnServer(user,pass);
