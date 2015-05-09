@@ -41,10 +41,12 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
 
         //ListView konfigurálása
         arr_tables = new ArrayList<Table>();
-        //Populate_Tables(); //TODO ez majd szerver lesz
+        //Populate_Tables(); //TODO ez majd szerver lesz GOMBRÓL HIVODIK MEG A COMMUNICATION.GETTABLES();
 
         //Kommunikáció osztály asztalok lekérdezésének metódusa meghívódik
-        arr_tables = Communication.GetTables();
+        Communication.getTables(); //TODO TODO
+
+        arr_tables = Communication.tables;
 
         t_adapt = new TableAdapter();
         tables = (ListView) findViewById(R.id.tables);
