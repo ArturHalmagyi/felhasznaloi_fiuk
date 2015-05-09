@@ -17,11 +17,11 @@ import java.util.Random;
 
 public class Communication {
 
-    public static Context context;
+
 
     public static ArrayList<Product> products;
     public static ArrayList<Table> tables;
-    public static String ip = "http://192.168.43.183";
+    public static String ip = "http://192.168.1.5";
     public static String table_id = "";
 
     public static ArrayList<Table> getTables() {
@@ -29,17 +29,17 @@ public class Communication {
     }
 
     public static Random rand = new Random();
-    static Boolean testMode;
-    static boolean staff=false;
+    static Boolean testMode=false;
+    static boolean staff=true;
     private static ComTask ServerCom;
 
     public static ComTask getServerCom() {
         return ServerCom;
     }
 
-    public Communication(Boolean test, Context context) {
+    public Communication(Boolean test) {
         testMode = test;
-        this.context = context;
+
 
 /*
         if (testMode == true){
@@ -86,7 +86,7 @@ public class Communication {
     }
     public static void SendOrder(Table table){
         if (testMode){
-            Toast.makeText(context,"Rendelés elküldve", Toast.LENGTH_LONG); //TODO string ami meg a szervernek
+             //TODO string ami meg a szervernek
         }
         else{
             SendOrderToServer(table);
@@ -102,7 +102,7 @@ public class Communication {
     }
     public static void SendPayRequest(String tableNumber){
         if (testMode){
-            Toast.makeText(context,"Fizetés történik", Toast.LENGTH_LONG);
+
         }
         else{
             SendPayRequestToServer(tableNumber);
@@ -268,7 +268,7 @@ public class Communication {
     //Szerveradatok
     public static void GetProductsFromServer(){
         //return products;
-        ServerCom = new ComTask(ip, context);
+        ServerCom = new ComTask(ip);
         ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
             @Override
             public void onDownloadSuccess(String response) {
@@ -285,7 +285,7 @@ public class Communication {
 
     } //menü lekérdezése
     public static void GetTablesFromServer(){
-        ServerCom = new ComTask(ip, context);
+        ServerCom = new ComTask(ip);
         ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
             @Override
             public void onDownloadSuccess(String response) {
@@ -301,7 +301,7 @@ public class Communication {
         ServerCom.execute("1");
     }   //asztalok állapotának lekérdezése
     public static void SendOrderToServer(Table table){
-        ServerCom = new ComTask(ip, context);
+        ServerCom = new ComTask(ip);
         ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
             @Override
             public void onDownloadSuccess(String response) {

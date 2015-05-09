@@ -38,24 +38,24 @@ public class ComTask extends AsyncTask<String, Void, String> {
     private onConnectionListener onConnectionListener;
     List<NameValuePair>  lData;
 
-    Context context;
-    ProgressDialog dialog;
-    public Context getContext() {
+    //Context context;
+    //ProgressDialog dialog;
+    /*public Context getContext() {
         return context;
     }
     public void setContext(Context context) {
         this.context = context;
-    }
+    }*/
 
 
-    public ComTask(String SERVER_IP, Context context) {
+    public ComTask(String SERVER_IP) {
         this.SERVER_IP = SERVER_IP;
         this.myHandler = new Handler(Looper.getMainLooper());
         lData = new ArrayList<NameValuePair>();
 
-        this.context = context;
-        dialog = new ProgressDialog(context, ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
-        dialog.setMessage("Dingo");
+        //this.context = context;
+        //dialog = new ProgressDialog(context, ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
+        //dialog.setMessage("Dingo");
 
     }
 

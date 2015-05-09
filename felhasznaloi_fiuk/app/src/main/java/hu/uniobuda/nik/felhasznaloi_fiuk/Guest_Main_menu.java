@@ -24,7 +24,7 @@ public class Guest_Main_menu extends ActionBarActivity {
     Button btnMeal;
     //String table_id;
     // szerverrel való kommunikációért felelős példány
-    public static Communication communicator;
+    //public static Communication communicator;
 
     @Override
     protected void onResume() {
@@ -36,7 +36,8 @@ public class Guest_Main_menu extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_main_menu);
 
-        communicator = new Communication(true, this);
+        //communicator = new Communication(true, this);
+        //Communication.SetTestModeOn();
         //szerverrel való kommunikációért felelős osztály példányosítása
         //communicator = new Communication(true);
         //communicator.LoadTestTables();
