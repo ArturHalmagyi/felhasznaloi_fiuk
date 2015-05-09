@@ -29,7 +29,7 @@ public class Communication {
 
     public static Random rand = new Random();  //A tesztadatok feltöltéséhez használt random szám generátor
     static Boolean testMode=false;              //Tesztmód beállitása
-    static boolean staff=false;                  //Személyzet belépve
+    static boolean staff=true;                  //Személyzet belépve
     private static ComTask ServerCom;
 
     public static ComTask getServerCom() {
@@ -70,7 +70,6 @@ public class Communication {
         }
         actualTable = temp;
     }   //egy asztal állapotának lekérdezése
-
     public static void GetTables(){
         if (testMode){
             LoadTestTables();
@@ -79,7 +78,6 @@ public class Communication {
             GetTablesFromServer();
         }
     }  //az összes asztal állapotának lekérése
-
     public static void SendOrder(Table table){
         if (testMode){
         }
@@ -87,7 +85,6 @@ public class Communication {
             SendOrderToServer(table);
         }
     }   //megrendelés elküldése a szervernek
-
     public static void Authentication(String user, String pass){
         if (testMode){
             AuthenticationTest(user,pass);
@@ -96,7 +93,6 @@ public class Communication {
             AuthenticationOnServer(user,pass);
         }
     }  //Autentikáció
-
     public static void SendPayRequest(String tableNumber){
         if (testMode){
         }
@@ -130,7 +126,6 @@ public class Communication {
             AddTable(temp);
         }
     }  //Asztalok feltöltése tesztadatokkal
-
     public static void LoadTestProducts(){
         products = null;
 
@@ -157,7 +152,6 @@ public class Communication {
             products.add(temp);
         }
     } //Termékek feltöltése tesztadatokkal
-
     public static void LoadTestProductsForTables(Table table){
 
         int randTestProductForTables = rand.nextInt(30);
@@ -179,11 +173,11 @@ public class Communication {
             table.addProduct(temp);
         }
     } //Asztalok rendeléseinek feltöltése tesztadatokkal
-
     public static void AuthenticationTest(String user, String pass){
         if(user.equals("nem")&&
                 pass.equals("nem"))
             staff=true;
+
     } //Tesztmód autentikáció
 
     //Teszt segédmetódusok
