@@ -22,6 +22,7 @@ public class Communication {
     public static ArrayList<Product> products;
     public static ArrayList<Table> tables;
     public static String ip = "http://192.168.43.183";
+    public static String table_id = "";
 
     public static ArrayList<Table> getTables() {
         return tables;
