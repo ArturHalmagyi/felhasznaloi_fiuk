@@ -104,6 +104,12 @@ public class ComTask extends AsyncTask<String, Void, String> {
                 lData.add(new BasicNameValuePair("asztal", params[1]));
                 lData.add(new BasicNameValuePair("adat", params[2]));
                 break;
+            case "3": // SendPayRequestToServer
+                lData.add(new BasicNameValuePair("asztal", params[1]));
+                break;
+            case "4": // Auth
+                lData.add(new BasicNameValuePair("user", params[1]));
+                lData.add(new BasicNameValuePair("pass", params[2]));
         }
 
 
@@ -182,5 +188,6 @@ public class ComTask extends AsyncTask<String, Void, String> {
             products.get(i).getName()
         }
     }*/
+
 
 }

@@ -316,9 +316,33 @@ public class Communication {
         ServerCom.execute("2",table.getName(),MyProductStrBuilder(table.getProducts()));
     } //rendelés elküldése a szervernek
     public static void SendPayRequestToServer(String tableNumber){
-        //todo krizantin
+        ServerCom = new ComTask(ip);
+        ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
+            @Override
+            public void onDownloadSuccess(String response) {
+                Log.d("UPLOAD_SUCCESS:","PayRequest:"+response);
+            }
+
+            @Override
+            public void onDownloadFail(String errorMessage) {
+                Log.d("UPLOAD_FAIL:",errorMessage);
+            }
+        });
+        ServerCom.execute("3",tableNumber);
     }
     public static void AuthenticationOnServer(String user, String pass){
-        //todo krizantin
+        ServerCom = new ComTask(ip);
+        ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
+            @Override
+            public void onDownloadSuccess(String response) {
+                Log.d("ACCESS_RESULT:",response);
+            }
+
+            @Override
+            public void onDownloadFail(String errorMessage) {
+                Log.d("ACCESS_RESULT:",errorMessage);
+            }
+        });
+        ServerCom.execute("4",user,pass);
     }
 }
