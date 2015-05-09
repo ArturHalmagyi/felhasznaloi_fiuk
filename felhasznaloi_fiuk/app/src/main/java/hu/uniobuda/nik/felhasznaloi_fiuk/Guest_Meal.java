@@ -102,9 +102,9 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
 
     void Submit_Click(){
         String temp = "";
-        String table_id = getIntent().getStringExtra("table_id");
+        //String table_id = getIntent().getStringExtra("table_id");
 
-        if (!table_id.equals("")) {
+        if (!Communication.table_id.equals("")) {
             if (Communication.testMode) {
                 for (int i = 0; i < arr.size(); i++) {
                     if (Integer.parseInt(arr.get(i).getQuantity()) != 0) {
@@ -117,7 +117,7 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
             }
             else {
                 Table order = new Table();
-                order.setName(table_id);
+                order.setName(Communication.table_id);
                 order.setState("foglalt");
 
                 for (int i = 0; i < arr.size(); i++) {

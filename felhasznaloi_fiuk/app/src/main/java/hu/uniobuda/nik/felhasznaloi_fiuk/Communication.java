@@ -142,7 +142,7 @@ public class Communication {
         if (products == null){
             products = new ArrayList<Product>();
         }
-        int randTestProduct = rand.nextInt(30);
+        int randTestProduct = rand.nextInt(30)+10;
         for (int i = 0; i < randTestProduct; i++){
             Product temp = new Product();
             temp.setName(String.valueOf(i));
