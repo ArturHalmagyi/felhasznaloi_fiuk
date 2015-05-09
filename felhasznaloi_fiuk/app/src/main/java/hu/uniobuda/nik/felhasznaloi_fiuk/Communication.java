@@ -75,7 +75,7 @@ public class Communication {
         //ArrayList<Product> temp = new ArrayList<Product>();
         Table temp = new Table();
         int i = 0;
-        while (i < Communication.tables.size() && Communication.tables.get(i).getName() != tableNumber){
+        while (i < Communication.tables.size() && !Communication.tables.get(i).getName().equals(tableNumber)){
             i++;
         }
         if (i < Communication.tables.size()){
