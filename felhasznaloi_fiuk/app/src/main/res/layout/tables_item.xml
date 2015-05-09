@@ -5,12 +5,12 @@
 
     <Button
         android:id="@+id/name"
-        android:layout_width="70dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/state"
-        android:layout_width="10dp"
+        android:layout_width="5dp"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

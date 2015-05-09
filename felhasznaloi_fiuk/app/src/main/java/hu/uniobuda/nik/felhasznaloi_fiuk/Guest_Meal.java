@@ -23,18 +23,13 @@ import java.util.List;
 
 
 public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérdezhető menü
-
     ///Adattagok
     ArrayList<Product> arr; //A termékek tömbje
     //int productCount; //A termékek száma
     CustomAdapter adapter; //A termékek megjelenítéséhez szükséges adapter
     boolean can_submit; //Azonosítva van-e az asztal
-
-
     ListView listView;
-
     ArrayList<NameValuePair> products;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +64,6 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
         listView.setAdapter(adapter);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_guest_meal, menu);
@@ -96,9 +90,6 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
             return super.onOptionsItemSelected(item);
         }
     }
-
-
-
 
     void Submit_Click(){
         String temp = "";

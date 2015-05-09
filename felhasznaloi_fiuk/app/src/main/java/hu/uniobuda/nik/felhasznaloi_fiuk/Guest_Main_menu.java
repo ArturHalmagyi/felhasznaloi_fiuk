@@ -35,7 +35,9 @@ public class Guest_Main_menu extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_main_menu);
-        Communication.testMode = true;
+
+
+        Communication.SetTestModeOn();
         //communicator = new Communication(true, this);
         //Communication.SetTestModeOn();
         //szerverrel való kommunikációért felelős osztály példányosítása
