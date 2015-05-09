@@ -13,7 +13,7 @@
 
     <!-- Guest main menu -->
     <string name="layout_activity_guest_main_menu_etlap">Étlap</string>
-    <string name="layout_activity_guest_main_menu_asztal_azonositas">Asztal azonositása</string>
+    <string name="layout_activity_guest_main_menu_asztal_azonositas">Asztal azonosítása</string>
     <string name="layout_activity_guest_main_menu_fizetes">Fizetés</string>
     <string name="layout_activity_guest_main_menu_megrendeleseim">Megrendeléseim</string>
 
