@@ -31,7 +31,7 @@ public class Communication {
 
     public static Random rand = new Random();  //A tesztadatok feltöltéséhez használt random szám generátor
     static Boolean testMode=false;              //Tesztmód beállitása
-    static boolean staff=true;
+    static boolean staff=true;                  //Személyzet belépve
     private static ComTask ServerCom;
 
     public static ComTask getServerCom() {
@@ -56,10 +56,10 @@ public class Communication {
     //teszt mód beállítás
     public static void SetTestModeOn(){
         testMode = true;
-    }
+    }  //Tesztmód bekapcsol
     public static void SetTestModeOff(){
         testMode = false;
-    }
+    } //Tesztmód kikapcsol, ilyenkor a szerverrel történik a kommunikáció
 
 
     //kommunikáció a szerverrel
@@ -90,7 +90,7 @@ public class Communication {
         else{
             GetTablesFromServer();
         }
-    }
+    }  //az összes asztal állapotának lekérése
     public static void SendOrder(Table table){
         if (testMode){
              //TODO string ami meg a szervernek
@@ -98,7 +98,7 @@ public class Communication {
         else{
             SendOrderToServer(table);
         }
-    }
+    }   //megrendelés elküldése a szervernek
     public static void Authentication(String user, String pass){
         if (testMode){
             AuthenticationTest(user,pass);
@@ -106,7 +106,7 @@ public class Communication {
         else {
             AuthenticationOnServer(user,pass);
         }
-    }
+    }  //Autentikáció
     public static void SendPayRequest(String tableNumber){
         if (testMode){
 
@@ -114,7 +114,7 @@ public class Communication {
         else{
             SendPayRequestToServer(tableNumber);
         }
-    }
+    }       //Fizetési jelzés elküldése
 
 
 
@@ -142,7 +142,7 @@ public class Communication {
             }
             AddTable(temp);
         }
-    }
+    }  //Asztalok feltöltése tesztadatokkal
     public static void LoadTestProducts(){
         products = null;
 
@@ -168,7 +168,7 @@ public class Communication {
             }
             products.add(temp);
         }
-    }
+    } //Termékek feltöltése tesztadatokkal
     public static void LoadTestProductsForTables(Table table){
 
         int randTestProductForTables = rand.nextInt(30);
@@ -189,13 +189,13 @@ public class Communication {
             }
             table.addProduct(temp);
         }
-    }
+    } //Asztalok rendeléseinek feltöltése tesztadatokkal
     public static void AuthenticationTest(String user, String pass){
         if(user.equals("nem")&&
                 pass.equals("nem"))
             staff=true;
 
-    }
+    } //Tesztmód autentikáció
 
     //Teszt segédmetódusok
     public void LoadMenu(ArrayList<Product> products){
