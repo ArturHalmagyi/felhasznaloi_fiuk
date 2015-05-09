@@ -1,8 +1,10 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
+import android.os.Bundle;
 
 import org.apache.http.NameValuePair;
 
@@ -27,6 +29,7 @@ public class Communication {
 
     public static Random rand = new Random();
     static Boolean testMode;
+    static boolean staff=false;
     private static ComTask ServerCom;
 
     public static ComTask getServerCom() {
@@ -179,6 +182,9 @@ public class Communication {
         }
     }
     public static void AuthenticationTest(String user, String pass){
+        if(user.equals("Barni")&&
+                pass.equals("langyi"))
+            staff=true;
 
     }
 
@@ -278,5 +284,5 @@ public class Communication {
     }
     public static void AuthenticationOnServer(String user, String pass){
         //todo krizantin
-    };
+    }
 }

@@ -47,7 +47,17 @@ public class Staff_Login extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     public void login(View view){
-        if(username.getText().toString().equals("A") &&
+        Communication.Authentication(username.getText().toString(),password.getText().toString());
+        if(Communication.staff)
+        { Toast.makeText(this, "sikeres azonositas",
+                    Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, Staff_Main_menu.class);
+        startActivity(intent);
+    } else {
+        Toast.makeText(this, "nem nyert",
+                Toast.LENGTH_LONG).show();
+    }
+       /* if(username.getText().toString().equals("A") &&
                 password.getText().toString().equals("a")){
             Toast.makeText(this, "sikeres azonositas",
                     Toast.LENGTH_LONG).show();
@@ -56,6 +66,6 @@ public class Staff_Login extends ActionBarActivity {
         } else {
             Toast.makeText(this, "nem nyert",
                     Toast.LENGTH_LONG).show();
-        }
+        }*/
     }
 }
