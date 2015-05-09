@@ -132,11 +132,12 @@ public class Communication {
             else{
                 temp.setState("szabad");
             }
-
             AddTable(temp);
         }
     }
     public static void LoadTestProducts(){
+        products = null;
+
         if (products == null){
             products = new ArrayList<Product>();
         }

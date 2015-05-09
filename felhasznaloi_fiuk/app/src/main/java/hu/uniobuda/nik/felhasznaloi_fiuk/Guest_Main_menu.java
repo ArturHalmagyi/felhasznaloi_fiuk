@@ -95,7 +95,6 @@ public class Guest_Main_menu extends ActionBarActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     public void startLogin(View view)
