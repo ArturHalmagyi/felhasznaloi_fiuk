@@ -94,7 +94,7 @@ public class Communication {
     }
     public static void Authentication(String user, String pass){
         if (testMode){
-                AuthenticationTest(user,pass);
+            AuthenticationTest(user,pass);
         }
         else {
             AuthenticationOnServer(user,pass);
@@ -329,13 +329,17 @@ public class Communication {
             }
         });
         ServerCom.execute("3",tableNumber);
-    }
+    } // Asztal fizetésre állítása
     public static void AuthenticationOnServer(String user, String pass){
         ServerCom = new ComTask(ip);
         ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
             @Override
             public void onDownloadSuccess(String response) {
                 Log.d("ACCESS_RESULT:",response);
+                if(response.equalsIgnoreCase("access gained"))
+                    staff=true;
+                else
+                    staff=false;
             }
 
             @Override
@@ -344,5 +348,5 @@ public class Communication {
             }
         });
         ServerCom.execute("4",user,pass);
-    }
+    } // user&pass ellenőrzés
 }
