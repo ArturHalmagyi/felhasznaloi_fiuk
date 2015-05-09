@@ -1,6 +1,8 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
 import android.app.ListActivity; //
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -18,9 +20,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 
-public class Tables extends ActionBarActivity { //Az asztalok állapotát lekérdező activity ///ActionBarActivity
+public class Tables extends ActionBarActivity { //Az asztalok állapotát lekérdező activity
 
     ///Adattagok
     ArrayList<Table> arr_tables; //Az asztalok tömbje
@@ -40,11 +45,11 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
         products = (TextView) findViewById(R.id.products);
 
         //ListView konfigurálása
-        arr_tables = new ArrayList<Table>();
+        //arr_tables = new ArrayList<Table>();
         //Populate_Tables(); //TODO ez majd szerver lesz GOMBRÓL HIVODIK MEG A COMMUNICATION.GETTABLES();
 
         //Kommunikáció osztály asztalok lekérdezésének metódusa meghívódik
-        Communication.getTables(); //TODO TODO
+        //Communication.getTables(); //TODO TODO
 
         arr_tables = Communication.tables;
 
@@ -70,7 +75,27 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.refresh) {
+            try {
+                ProgressDialog pd = new ProgressDialog(Tables.this);
+                pd.setMessage("Processing...");
+                pd.show();
+                Communication.GetTables();
+                if (!Communication.testMode) {
+                    Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+                }
+                pd.dismiss();
+
+                arr_tables = Communication.tables;
+                t_adapt.notifyDataSetChanged();
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (TimeoutException e) {
+                e.printStackTrace();
+            }
             return true;
         }
 
@@ -108,9 +133,6 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
                 convertView = inflater.inflate(R.layout.tables_item, null); //Layout beállítása
 
                 holder.name = (Button) convertView.findViewById(R.id.name); //Asztalok hozzáadása
-
-
-
 
                 convertView.setTag(holder);
             } else { //Ha már van View, lekérdezzük azt

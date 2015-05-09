@@ -1,5 +1,6 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -12,10 +13,14 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 
 public class Staff_Main_menu extends ActionBarActivity {
 
-    Button btnAzonositas;
+    //Button btnID;
     String azonositottString;
 
     Button btn_tables;
@@ -26,23 +31,45 @@ public class Staff_Main_menu extends ActionBarActivity {
         setContentView(R.layout.activity_staff_main_menu);
 
 
-        btnAzonositas = (Button) findViewById(R.id.btn_tables);
+        //btnID = (Button) findViewById(R.id.btn_tables);
         azonositottString = "";
 
-        btnAzonositas.setOnClickListener(new View.OnClickListener() {
+        /*btnID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(Staff_Main_menu.this);
                 integrator.initiateScan(integrator.QR_CODE_TYPES);
             }
-        });
+        });*/
 
         btn_tables = (Button) findViewById(R.id.btn_tables);
         btn_tables.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Staff_Main_menu.this, Tables.class);
-                startActivity(intent);
+                try {
+                    //Communication.getServerCom().setContext(Guest_Main_menu.this);
+                    //Communication.products = null;
+                    ProgressDialog pd = new ProgressDialog(Staff_Main_menu.this);
+                    pd.setMessage("Processing...");
+                    pd.show();
+                    //if (Communication.products == null) {
+                    //Communication.GetProductsFromServer();
+                    Communication.GetTables();
+                    if (!Communication.testMode) {
+                        Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+                    }
+
+                    Intent intent = new Intent(Staff_Main_menu.this, Tables.class);
+                    startActivity(intent);
+                    //}
+                    pd.dismiss();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (TimeoutException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

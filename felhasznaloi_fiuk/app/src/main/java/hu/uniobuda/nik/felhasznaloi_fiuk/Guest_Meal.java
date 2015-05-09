@@ -26,7 +26,7 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
 
     ///Adattagok
     ArrayList<Product> arr; //A termékek tömbje
-    int productCount; //A termékek száma
+    //int productCount; //A termékek száma
     CustomAdapter adapter; //A termékek megjelenítéséhez szükséges adapter
     boolean can_submit; //Azonosítva van-e az asztal
 
@@ -101,20 +101,37 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
 
 
     void Submit_Click(){
-        String s = "";
-        if (can_submit) {
-            for (int i = 0; i < productCount; i++) {
-                if (Integer.parseInt(arr.get(i).getQuantity()) != 0) {
-                    s += arr.get(i).getName();
-                    s += ", ";
-                    s += Integer.parseInt(arr.get(i).getQuantity());
-                    s += "\n";
+        String temp = "";
+        //String table_id = getIntent().getStringExtra("table_id");
+
+        if (!Communication.table_id.equals("")) {
+            if (Communication.testMode) {
+                for (int i = 0; i < arr.size(); i++) {
+                    if (Integer.parseInt(arr.get(i).getQuantity()) != 0) {
+                        temp += arr.get(i).getName();
+                        temp += ", ";
+                        temp += Integer.parseInt(arr.get(i).getQuantity());
+                        temp += "\n";
+                    }
                 }
             }
+            else {
+                Table order = new Table();
+                order.setName(Communication.table_id);
+                order.setState("foglalt");
+
+                for (int i = 0; i < arr.size(); i++) {
+                    if (Integer.parseInt(arr.get(i).getQuantity()) != 0) {
+                        order.addProduct(arr.get(i));
+                    }
+                }
+                Communication.SendOrderToServer(order);
+                temp = "Rendelését elküldtük!";
+            }
         } else {
-            s = "Kérjük azonosítsa az asztalt!";
+            temp = "Kérjük azonosítsa az asztalt!";
         }
-        Toast.makeText(Guest_Meal.this, s, Toast.LENGTH_LONG).show();
+        Toast.makeText(Guest_Meal.this, temp, Toast.LENGTH_LONG).show();
     }
 
     private class CustomAdapter extends BaseAdapter {

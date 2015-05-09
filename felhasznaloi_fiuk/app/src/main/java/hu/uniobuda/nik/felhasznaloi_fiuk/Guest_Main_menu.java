@@ -20,9 +20,9 @@ import java.util.concurrent.TimeoutException;
 
 public class Guest_Main_menu extends ActionBarActivity {
 
-    Button btnAzonositas;
+    Button btnID;
     Button btnMeal;
-    String azonositottString;
+    //String table_id;
     // szerverrel való kommunikációért felelős példány
     public static Communication communicator;
 
@@ -46,10 +46,10 @@ public class Guest_Main_menu extends ActionBarActivity {
         Communication.products=null;
         //Communication.GetProductsFromServer();
 
-        btnAzonositas = (Button) findViewById(R.id.btn_tables);
-        azonositottString = "";
+        btnID = (Button) findViewById(R.id.btn_tables);
+        //table_id = "";
 
-        btnAzonositas.setOnClickListener(new View.OnClickListener() {
+        btnID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(Guest_Main_menu.this);
@@ -91,11 +91,10 @@ public class Guest_Main_menu extends ActionBarActivity {
                     Toast.makeText(Guest_Main_menu.this,"még null "+i,Toast.LENGTH_SHORT).show();
                 }*/
                 Intent intent = new Intent(Guest_Main_menu.this, Guest_Meal.class);
-
+                //intent.putExtra("table_id", table_id);
                 startActivity(intent);
             }
         });
-
     }
 
     public void startLogin(View view)
@@ -108,10 +107,11 @@ public class Guest_Main_menu extends ActionBarActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (result != null) {
             String contents = result.getContents();
-            azonositottString = result.getContents();
+            Communication.table_id = result.getContents();
+            //table_id = result.getContents();
             if (contents != null) {
                 //showDialog(R.string.result_succeeded, result.toString());
-                Toast.makeText(this, azonositottString, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, Communication.table_id, Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this,"Result féjld",Toast.LENGTH_LONG);
             }

@@ -33,5 +33,6 @@
     <string name="layout_activity_staff_login_ButtonLogin">Login</string>
 
     <!-- Staff meal -->
+    <string name="layout_activity_staff_meal_frissites">Refresh</string>
 
 </resources>

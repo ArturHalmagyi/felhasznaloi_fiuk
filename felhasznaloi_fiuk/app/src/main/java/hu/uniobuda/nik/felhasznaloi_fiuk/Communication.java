@@ -1,8 +1,10 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
+import android.os.Bundle;
 
 import org.apache.http.NameValuePair;
 
@@ -20,6 +22,7 @@ public class Communication {
     public static ArrayList<Product> products;
     public static ArrayList<Table> tables;
     public static String ip = "http://192.168.43.183";
+    public static String table_id = "";
 
     public static ArrayList<Table> getTables() {
         return tables;
@@ -27,6 +30,7 @@ public class Communication {
 
     public static Random rand = new Random();
     static Boolean testMode;
+    static boolean staff=false;
     private static ComTask ServerCom;
 
     public static ComTask getServerCom() {
@@ -111,6 +115,8 @@ public class Communication {
     //Tesztadatok
     public static void LoadTestTables(){
 
+        tables = null;
+
         int randTestTables = rand.nextInt(30)+10;
         for (int i = 0; i <randTestTables; i++){
             Table temp = new Table();
@@ -127,15 +133,16 @@ public class Communication {
             else{
                 temp.setState("szabad");
             }
-
             AddTable(temp);
         }
     }
     public static void LoadTestProducts(){
+        products = null;
+
         if (products == null){
             products = new ArrayList<Product>();
         }
-        int randTestProduct = rand.nextInt(30);
+        int randTestProduct = rand.nextInt(30)+10;
         for (int i = 0; i < randTestProduct; i++){
             Product temp = new Product();
             temp.setName(String.valueOf(i));
@@ -177,6 +184,9 @@ public class Communication {
         }
     }
     public static void AuthenticationTest(String user, String pass){
+        if(user.equals("nem")&&
+                pass.equals("nem"))
+            staff=true;
 
     }
 
@@ -310,5 +320,5 @@ public class Communication {
     }
     public static void AuthenticationOnServer(String user, String pass){
         //todo krizantin
-    };
+    }
 }
