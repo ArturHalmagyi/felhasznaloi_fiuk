@@ -1,5 +1,6 @@
 package hu.uniobuda.nik.felhasznaloi_fiuk;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -136,6 +138,14 @@ public class Guest_Main_menu extends ActionBarActivity {
                     Communication.GetTable(Communication.table_id);
                     if (Communication.actualTable.products.size() > 0) {
                         Toast.makeText(Guest_Main_menu.this, Communication.actualTable.getName() + String.valueOf(Communication.actualTable.products.size()), Toast.LENGTH_LONG).show();
+                        AlertDialog.Builder dlgAlert= new AlertDialog.Builder(Guest_Main_menu.this);
+                        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Guest_Main_menu.this,R.layout.activity_guest_main_menu);
+                        arrayAdapter.add(Communication.actualTable.products.get(0).toString());
+                        dlgAlert.setMessage("valami");
+                        dlgAlert.setTitle("megrendelések");
+                        dlgAlert.setPositiveButton("OK",null);
+                        dlgAlert.setCancelable(true);
+                        dlgAlert.create().show();
                     }
                     else{
                         Toast.makeText(Guest_Main_menu.this,"Nincs rendelése", Toast.LENGTH_LONG).show();
