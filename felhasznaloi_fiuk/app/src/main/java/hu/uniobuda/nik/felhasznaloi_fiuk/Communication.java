@@ -40,16 +40,6 @@ public class Communication {
 
     public Communication(Boolean test) {
         testMode = test;
-
-
-/*
-        if (testMode == true){
-
-        }
-        else{
-
-        }
-        */
     }
 
 
