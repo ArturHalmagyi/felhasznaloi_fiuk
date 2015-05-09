@@ -133,24 +133,25 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
                 convertView = inflater.inflate(R.layout.tables_item, null); //Layout beállítása
 
                 holder.name = (Button) convertView.findViewById(R.id.name); //Asztalok hozzáadása
-
+                holder.state = (Button) convertView.findViewById(R.id.state);
                 convertView.setTag(holder);
             } else { //Ha már van View, lekérdezzük azt
                 holder = (TableHolder) convertView.getTag();
             }
 
             holder.name.setText(arr_tables.get(position).getName());
+            holder.name.setBackgroundColor(Color.LTGRAY);
             switch (arr_tables.get(position).getState()){ //Az asztal állapota alapján a gomb hátterének beállítása
                 case "szabad":
-                    holder.name.setBackgroundColor(Color.GREEN);
+                    holder.state.setBackgroundColor(Color.GREEN);
                     break;
 
                 case "foglalt":
-                    holder.name.setBackgroundColor(Color.YELLOW);
+                    holder.state.setBackgroundColor(Color.YELLOW);
                     break;
 
                 case "fizet":
-                    holder.name.setBackgroundColor(Color.RED);
+                    holder.state.setBackgroundColor(Color.RED);
                     break;
             }
 
@@ -184,6 +185,7 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
 
         public class TableHolder {
             public Button name;
+            public Button state;
         }
 
     }
