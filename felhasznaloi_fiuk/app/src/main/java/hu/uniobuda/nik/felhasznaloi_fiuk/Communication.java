@@ -209,17 +209,51 @@ public class Communication {
     }
     private static ArrayList<Product> StrToProduct(String str){
         String[] ProStrs= str.split("`");
-        ArrayList<Product> products=new ArrayList<>(ProStrs.length);
+        ArrayList<Product> products=new ArrayList<Product>(ProStrs.length);
         Integer db = ProStrs.length;
         for (int i=0;i<db;i++){
-            Integer elso = ProStrs[i].indexOf(";");
-            Integer masodik = ProStrs[i].indexOf(";",elso+1);
+            int elso = ProStrs[i].indexOf(";");
+            int masodik = ProStrs[i].indexOf(";",elso+1);
             String newName=ProStrs[i].substring(0,elso);
             String newPrice=ProStrs[i].substring(elso+1,masodik);
             String newUnit=ProStrs[i].substring(masodik+1);
-            products.add(new Product(newPrice,newName,newUnit));
+            products.add(new Product(newPrice,newName,newUnit,"0"));
         }
         return products;
+    }
+    private static ArrayList<Product> StrToProductTwo(String str){
+        String[] ProStrs= str.split("`");
+        ArrayList<Product> products=new ArrayList<Product>(ProStrs.length);
+        Integer db = ProStrs.length;
+        for (int i=0;i<db;i++){
+            int elso = ProStrs[i].indexOf(";");
+            int masodik = ProStrs[i].indexOf(";",elso+1);
+            int harom = ProStrs[i].indexOf(";",masodik+1);
+            String newName=ProStrs[i].substring(0,elso);
+            String newPrice=ProStrs[i].substring(elso+1,masodik);
+            String newUnit=ProStrs[i].substring(masodik+1,harom);
+            String newDB =ProStrs[i].substring(harom+1);
+            products.add(new Product(newPrice,newName,newUnit,newDB));
+        }
+        return products;
+    }
+    public static ArrayList<Table> StrToTable(String str) {
+        String[] StrTables= str.split("!");
+        ArrayList<Table> tables=new ArrayList<Table>(StrTables.length);
+        for (int i=0 ; i < StrTables.length ; i++){
+            int dollar=StrTables[i].indexOf("$");
+            int szazalek=StrTables[i].indexOf("%");
+            String tProductsStr=StrTables[i].substring(szazalek+1);
+            String tName=StrTables[i].substring(0,dollar);
+            String tStatus=StrTables[i].substring(dollar+1,szazalek);
+            ArrayList<Product> tProducts=StrToProductTwo(tProductsStr);
+            Table tempTable=new Table();
+            tempTable.setName(tName);
+            tempTable.setState(tStatus);
+            tempTable.setProducts(tProducts);
+            tables.add(tempTable);
+        }
+        return tables;
     }
     //Szerveradatok
     public static void GetProductsFromServer(){
@@ -241,26 +275,27 @@ public class Communication {
 
     } //menü lekérdezése
     public static void GetTablesFromServer(){
+        ServerCom = new ComTask(ip, context);
         ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
             @Override
             public void onDownloadSuccess(String response) {
                 Log.d("DOWNLOAD_SUCCESS:","getTablesResult:"+response);
-                // TODO CREATE TABLE ARRAY FROM response
-                //TODO kristók communication.tables = valami, uganug mint a meal-nél
+                tables = StrToTable(response);
             }
 
             @Override
             public void onDownloadFail(String errorMessage) {
-                Log.d("DOWNLOAD_FAIL:",errorMessage);
+                Log.d("DOWNLOAD_FAIL:","getTablesFrom Server say:"+errorMessage);
             }
         });
         ServerCom.execute("1");
     }   //asztalok állapotának lekérdezése
     public static void SendOrderToServer(Table table){
+        ServerCom = new ComTask(ip, context);
         ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
             @Override
             public void onDownloadSuccess(String response) {
-                Log.d("UPLOAD_SUCCESS:","setOrderResult:"+response);
+                Log.d("UPLOAD_SUCCESS:","sendOrderResult:"+response);
             }
 
             @Override
@@ -268,9 +303,8 @@ public class Communication {
                 Log.d("UPLOAD_FAIL:",errorMessage);
             }
         });
-
-        ServerCom.execute("2",table.getName(),MyProductStrBuilder(table.getProducts()));  //rendelés elküldése a szervernek
-    } //TODO krizantin
+        ServerCom.execute("2",table.getName(),MyProductStrBuilder(table.getProducts()));
+    } //rendelés elküldése a szervernek
     public static void SendPayRequestToServer(String tableNumber){
         //todo krizantin
     }

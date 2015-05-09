@@ -18,6 +18,7 @@ public class Table { //Ez egy asztalt reprezentáló osztály
     public String getState() {return state;}
     public void setState(String state) {this.state = state;}
     public ArrayList<Product> getProducts() {return products;}
+    public void setProducts(ArrayList<Product> products) {this.products = products;}
 
     //Termék hozzáadása a rendeltekhez
     public void addProduct(Product product){products.add(product);}

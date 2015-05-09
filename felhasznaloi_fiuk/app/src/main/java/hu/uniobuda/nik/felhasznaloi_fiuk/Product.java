@@ -24,10 +24,10 @@ public class Product {
     public Product() {
     }
 
-    public Product(String price, String name, String db) {
+    public Product(String price, String name, String db, String quantity) {
         this.price = price;
         this.name = name;
         this.db = db;
-        this.quantity = "0";
+        this.quantity = quantity;
     }
 }
