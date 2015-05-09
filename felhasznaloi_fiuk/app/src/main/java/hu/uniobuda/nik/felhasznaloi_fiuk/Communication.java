@@ -57,8 +57,70 @@ public class Communication {
     }
 
 
+    //kommunikáció a szerverrel
+    public static void GetProducts(){
+        if (testMode){
+            LoadTestProducts();
+        }
+        else {
+            GetProductsFromServer();
+        }
+    } //menü lekérdezése
+    public static ArrayList<Product> GetTable(String tableNumber){
+        ArrayList<Product> temp = new ArrayList<Product>();
+        GetTables(); //ezután ki kell választani azt amelyik kell nekünk
+        /////
+        return temp;
+    }   //egy asztal állapotának lekérdezése
+    public static ArrayList<Table> GetTables(){
 
-    //tesztadatok feltöltése
+        if (testMode){
+
+            LoadTestTables();
+        }
+        else{
+            //TODO Kristóf
+            ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
+                @Override
+                public void onDownloadSuccess(String response) {
+                    Log.d("DOWNLOAD_SUCCESS:","getTablesResult:"+response);
+                    // TODO CREATE TABLE ARRAY FROM response
+                }
+
+                @Override
+                public void onDownloadFail(String errorMessage) {
+                    Log.d("DOWNLOAD_FAIL:",errorMessage);
+                }
+            });
+            ServerCom.execute("1");
+
+            tables = new ArrayList<Table>(); //egyenlővé kell tenni a tables listával. HA KÜLÖN SzáL? ÉS NEM VÁRUNK RÁ, AKKOR VISSZATÉRHET A RÉGI TABLES LISTÁVAL
+        }
+
+        return tables;
+    }//asztalok állapotának lekérdezése
+    public static void SendOrderToServer(Table table){
+        ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
+            @Override
+            public void onDownloadSuccess(String response) {
+                Log.d("UPLOAD_SUCCESS:","setOrderResult:"+response);
+            }
+
+            @Override
+            public void onDownloadFail(String errorMessage) {
+                Log.d("UPLOAD_FAIL:",errorMessage);
+            }
+        });
+
+        ServerCom.execute("2",table.getName(),MyProductStrBuilder(table.getProducts()));
+
+    };               //rendelés elküldése a szervernek
+
+                                                    //TODO kristóf kommunikáció szerverrel; ez mindig uj table objektum legyen, hogy a szerveren könnyebb legyen lekérdezni
+
+
+
+    //Tesztadatok
     public static void LoadTestTables(){
 
         int randTestTables = rand.nextInt(30)+10;
@@ -127,7 +189,7 @@ public class Communication {
         }
     }
 
-    //segédfüggvények
+    //Teszt segédmetódusok
     public void LoadMenu(ArrayList<Product> products){
         this.products = products;
     }
@@ -138,66 +200,9 @@ public class Communication {
         tables.add(table);
     }
 
-    //kommunikáció a szerverrel
-    public static void GetProducts(){
-        if (testMode){
-            LoadTestProducts();
-        }
-        else {
-            GetProductsFromServer();
-        }
-    } //menü lekérdezése
-    public static ArrayList<Product> GetTable(String tableNumber){
-        ArrayList<Product> temp = new ArrayList<Product>();
-        GetTables(); //ezután ki kell választani azt amelyik kell nekünk
-        /////
-        return temp;
-    }   //egy asztal állapotának lekérdezése
-    public static ArrayList<Table> GetTables(){
 
-        if (testMode){
 
-            LoadTestTables();
-        }
-        else{
-            //TODO Kristóf
-            ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
-                @Override
-                public void onDownloadSuccess(String response) {
-                    Log.d("DOWNLOAD_SUCCESS:","getTablesResult:"+response);
-                    // TODO CREATE TABLE ARRAY FROM response
-                }
-
-                @Override
-                public void onDownloadFail(String errorMessage) {
-                    Log.d("DOWNLOAD_FAIL:",errorMessage);
-                }
-            });
-            ServerCom.execute("1");
-
-            tables = new ArrayList<Table>(); //egyenlővé kell tenni a tables listával. HA KÜLÖN SzáL? ÉS NEM VÁRUNK RÁ, AKKOR VISSZATÉRHET A RÉGI TABLES LISTÁVAL
-        }
-
-        return tables;
-    }//asztalok állapotának lekérdezése
-    public static void SendOrderToServer(Table table){
-        ServerCom.setOnConnectionListener(new ComTask.onConnectionListener() {
-            @Override
-            public void onDownloadSuccess(String response) {
-                Log.d("UPLOAD_SUCCESS:","setOrderResult:"+response);
-            }
-
-            @Override
-            public void onDownloadFail(String errorMessage) {
-                Log.d("UPLOAD_FAIL:",errorMessage);
-            }
-        });
-
-        ServerCom.execute("2",table.getName(),MyProductStrBuilder(table.getProducts()));
-
-    };               //rendelés elküldése a szervernek
-
-                                                    //TODO kristóf kommunikáció szerverrel; ez mindig uj table objektum legyen, hogy a szerveren könnyebb legyen lekérdezni
+    //Szerver segédmetódusok
     /// output: name1;quantity1|name2;quantity2...
     private static String MyProductStrBuilder(ArrayList<Product> products){
         StringBuilder sb = new StringBuilder();
@@ -211,7 +216,6 @@ public class Communication {
         sb.deleteCharAt(sb.length()-1);
         return sb.toString();
     }
-
     private static ArrayList<Product> StrToProduct(String str){
         String[] ProStrs= str.split("`");
         ArrayList<Product> products=new ArrayList<>(ProStrs.length);
@@ -226,7 +230,7 @@ public class Communication {
         }
         return products;
     }
-
+    //Szerveradatok
     public static void GetProductsFromServer(){
         //return products;
         ServerCom = new ComTask(ip, context);
