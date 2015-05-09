@@ -22,6 +22,7 @@ public class Guest_Main_menu extends ActionBarActivity {
 
     Button btnID;
     Button btnMeal;
+    Button btnPay;
     //String table_id;
     // szerverrel való kommunikációért felelős példány
     //public static Communication communicator;
@@ -50,8 +51,6 @@ public class Guest_Main_menu extends ActionBarActivity {
         //Communication.GetProductsFromServer();
 
         btnID = (Button) findViewById(R.id.btn_tables);
-        //table_id = "";
-
         btnID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +95,19 @@ public class Guest_Main_menu extends ActionBarActivity {
                 Intent intent = new Intent(Guest_Main_menu.this, Guest_Meal.class);
                 //intent.putExtra("table_id", table_id);
                 startActivity(intent);
+            }
+        });
+
+        btnPay = (Button) findViewById(R.id.btn_pay);
+        btnPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Communication.testMode){
+                    Toast.makeText(Guest_Main_menu.this,"Fizetését jeleztük", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Communication.SendPayRequestToServer(Communication.table_id);
+                }
             }
         });
     }
