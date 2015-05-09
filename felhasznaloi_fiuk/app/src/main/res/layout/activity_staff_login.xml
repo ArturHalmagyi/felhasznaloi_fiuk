@@ -6,57 +6,55 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="hu.uniobuda.nik.felhasznaloi_fiuk.Staff_Login">
+    tools:context="hu.uniobuda.nik.felhasznaloi_fiuk.Staff_Login"
+    android:layout_gravity="center">
 
-    <ImageView
+
+
+    <TextView
+        android:layout_marginTop="150dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:background="@drawable/ic_launcher"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/layout_activity_staff_login_felhasznalonev"
+        android:id="@+id/username"
+        android:layout_alignStart="@id/edit_password"
+        android:layout_alignLeft="@id/edit_password"
+        />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
+        android:id="@+id/edit_username"
+        android:layout_below="@id/username"
+        android:layout_alignStart="@id/edit_password"
+        android:layout_alignLeft="@id/edit_password"
         >
-       <requestFocus/>
+        <requestFocus/>
     </EditText>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/layout_activity_staff_login_felhasznalonev"
-        android:id="@+id/textView"
-        android:layout_below="@+id/imageView"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:text="@string/layout_activity_staff_login_jelszo"
+        android:id="@+id/password"
+        android:layout_below="@id/edit_username"
+        android:layout_alignStart="@id/edit_password"
+        android:layout_alignLeft="@id/edit_password"
+        />
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/layout_activity_staff_login_jelszo"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/edit_password"
+        android:layout_below="@+id/password"
+        android:layout_centerHorizontal="true"
+        />
 
     <Button
         android:layout_width="wrap_content"
@@ -64,10 +62,11 @@
         android:text="@string/layout_activity_staff_login_ButtonLogin"
         android:id="@+id/button"
         android:onClick="login"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/edit_password"
         android:background="@drawable/button_color"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp" />
+        />
 
 
 </RelativeLayout>

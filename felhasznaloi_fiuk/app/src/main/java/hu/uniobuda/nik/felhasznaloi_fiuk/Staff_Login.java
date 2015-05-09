@@ -20,8 +20,8 @@ public class Staff_Login extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_login);
-        username = (EditText)findViewById(R.id.editText);
-        password = (EditText)findViewById(R.id.editText2);
+        username = (EditText)findViewById(R.id.edit_username);
+        password = (EditText)findViewById(R.id.edit_password);
     }
 
 

@@ -10,6 +10,21 @@
     tools:context=".Main_menu">
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/layout_activity_staff_bejelentkezes"
+        android:id="@+id/btn_login"
+        android:onClick="startLogin"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/zxing_transparent"
+
+        android:layout_column="0"
+        android:layout_row="0"
+        android:layout_gravity="right"
+        />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,21 +87,6 @@
         android:layout_row="5"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/layout_activity_staff_bejelentkezes"
-        android:id="@+id/btn_login"
-        android:onClick="startLogin"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:background="@color/zxing_transparent"
-
-        android:layout_column="0"
-        android:layout_row="0"
-        android:layout_gravity="right"
         />
 
 </GridLayout>
