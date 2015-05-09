@@ -134,7 +134,7 @@ public class Guest_Main_menu extends ActionBarActivity {
                     }
                     pd.dismiss();
                     Communication.GetTable(Communication.table_id);
-                    if (Communication.actualTable != null) {
+                    if (Communication.actualTable.products.size() > 0) {
                         Toast.makeText(Guest_Main_menu.this, Communication.actualTable.getName() + String.valueOf(Communication.actualTable.products.size()), Toast.LENGTH_LONG).show();
                     }
                     else{
