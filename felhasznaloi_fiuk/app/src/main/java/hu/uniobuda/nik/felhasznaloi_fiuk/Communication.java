@@ -111,6 +111,8 @@ public class Communication {
     //Tesztadatok
     public static void LoadTestTables(){
 
+        tables = null;
+
         int randTestTables = rand.nextInt(30)+10;
         for (int i = 0; i <randTestTables; i++){
             Table temp = new Table();
