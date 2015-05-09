@@ -38,24 +38,12 @@ public class ComTask extends AsyncTask<String, Void, String> {
     private onConnectionListener onConnectionListener;
     List<NameValuePair>  lData;
 
-    //Context context;
-    //ProgressDialog dialog;
-    /*public Context getContext() {
-        return context;
-    }
-    public void setContext(Context context) {
-        this.context = context;
-    }*/
-
 
     public ComTask(String SERVER_IP) {
         this.SERVER_IP = SERVER_IP;
         this.myHandler = new Handler(Looper.getMainLooper());
         lData = new ArrayList<NameValuePair>();
 
-        //this.context = context;
-        //dialog = new ProgressDialog(context, ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
-        //dialog.setMessage("Dingo");
 
     }
 
@@ -64,7 +52,7 @@ public class ComTask extends AsyncTask<String, Void, String> {
         lData = new ArrayList<NameValuePair>();
     }
 
-    // postMessages
+    // postMessages: szerver kommunikáció után ez szól
     private void postDownloadSuccess(final String response){
         this.myHandler.post(new Runnable() {
             @Override
@@ -132,7 +120,7 @@ public class ComTask extends AsyncTask<String, Void, String> {
         }
         return resultStr;
     }
-
+    // beérkező stream olvasása
     private String StreamConverter(InputStream is) throws IOException, UnsupportedEncodingException{
         Reader reader = null;
         reader = new InputStreamReader(is, "UTF-8");
@@ -143,15 +131,11 @@ public class ComTask extends AsyncTask<String, Void, String> {
         return outStr;
     }
 
-    @Override
-    protected void onPreExecute() {
-        //dialog.show();
-    }
 
     @Override
     protected String doInBackground(String... params) {
         try {
-            return postDataToServer(params);
+            return postDataToServer(params); // Beérkező paraméterek átadása param[0]:művelet mindig
         } catch (IOException e) {
             postDownloadFail(e.getLocalizedMessage());
             e.printStackTrace();
@@ -161,33 +145,14 @@ public class ComTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        //super.onPostExecute(s);
-        //Toast.makeText(mainContext,"OnPostExecute message: "+s,Toast.LENGTH_LONG).show();
-        postDownloadSuccess(s); // TODO: [Kristóf] eredmény ellenőrzése ??
-        //dialog.dismiss();
-
-        //result = s;
+        postDownloadSuccess(s);
     }
-
 
 // Interface
     public interface onConnectionListener{
         void onDownloadSuccess(String response);
         void onDownloadFail(String errorMessage);
     }
-/*
-    public static String SetOrderPostRequest(Table table){
-        StringBuilder sb = new StringBuilder(table.products.size()*10);
-//        String req="";
-//        req += table.getName()+";";
-        sb.append(table.getName()+";");
-
-        ArrayList<Product> products= table.getProducts();
-        for (int i=0; i<products.size();i++){
-            sb.append()
-            products.get(i).getName()
-        }
-    }*/
 
 
 }
