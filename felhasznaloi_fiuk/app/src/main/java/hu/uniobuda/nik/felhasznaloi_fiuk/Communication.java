@@ -176,6 +176,9 @@ public class Communication {
             table.addProduct(temp);
         }
     }
+    public static void AuthenticationTest(String user, String pass){
+
+    }
 
     //Teszt segédmetódusok
     public void LoadMenu(ArrayList<Product> products){
