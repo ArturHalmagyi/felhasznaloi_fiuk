@@ -101,10 +101,10 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
         Toast.makeText(Guest_Meal.this, temp, Toast.LENGTH_LONG).show(); // megjelenítjük, a beállított üzenetet (rendelések,sikeres rendelés vagy azonosítani kell az asztalt)
     }
 
-    private class CustomAdapter extends BaseAdapter {
+    private class CustomAdapter extends BaseAdapter { //a listához való adapter belső osztálya
 
         @Override
-        public int getCount() {
+        public int getCount() { //lista nagyságának visszaadása
             if (arr != null && arr.size() != 0){
                 return arr.size();
             }
@@ -124,22 +124,25 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final ViewHolder holder;
-            if (convertView == null) {
+            if (convertView == null) { //ha még nincs view, létre kell hozni
                 holder = new ViewHolder();
                 LayoutInflater inflater = Guest_Meal.this.getLayoutInflater();
                 convertView = inflater.inflate(R.layout.meal_item, null);
 
+                //beállítjuk a viewholder értékeit
                 holder.name = (TextView) convertView.findViewById(R.id.name);
                 holder.price = (TextView) convertView.findViewById(R.id.price);
                 holder.quantity = (EditText) convertView.findViewById(R.id.quantity);
                 holder.db = (TextView) convertView.findViewById(R.id.db);
 
+                //beállítjuk a holder tagjét
                 convertView.setTag(holder);
-            } else {
+            } else { //ha már van view, akkor azt használjuk
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            holder.ref = position;
+            //adatok beállítása
+            holder.ref = position; //a ref adattag az edittextekbe írt mennyiségek azonosításához kell
 
             holder.name.setText(arr.get(position).getName());
             holder.price.setText(arr.get(position).getPrice());
@@ -157,7 +160,7 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
             return convertView;
         }
 
-        public class ViewHolder {  // costum view a termékek listájának megjelenítéséhez
+        public class ViewHolder {  // costume view a termékek listájának megjelenítéséhez
 
             public TextView name;
             public TextView price;

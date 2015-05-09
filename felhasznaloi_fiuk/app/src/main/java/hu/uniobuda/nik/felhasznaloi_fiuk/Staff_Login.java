@@ -27,8 +27,10 @@ public class Staff_Login extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_login);
+
         username = (EditText)findViewById(R.id.edit_username);
         password = (EditText)findViewById(R.id.edit_password);
+
         btnLogin = (Button) findViewById(R.id.button);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +54,9 @@ public class Staff_Login extends ActionBarActivity {
                     }
                 }
                 pd.dismiss(); //megsemmisítjük a töltő dialogot
+
+                username.setText("");
+                password.setText("");
 
                 if(Communication.staff) //ha sikeres volt az azonosítás
                 { Toast.makeText(Staff_Login.this, getResources().getString(R.string.layout_activity_staff_login_sikerult),
