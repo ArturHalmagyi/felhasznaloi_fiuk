@@ -28,8 +28,8 @@ public class Communication {
     }
 
     public static Random rand = new Random();  //A tesztadatok feltöltéséhez használt random szám generátor
-    static Boolean testMode=false;              //Tesztmód beállitása
-    static boolean staff=true;                  //Személyzet belépve
+    static Boolean testMode;              //Tesztmód beállitása
+    static boolean staff;                  //Személyzet belépve
     private static ComTask ServerCom;
 
     public static ComTask getServerCom() {
