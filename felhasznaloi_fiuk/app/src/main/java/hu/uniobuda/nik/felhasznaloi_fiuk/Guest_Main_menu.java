@@ -85,11 +85,14 @@ public class Guest_Main_menu extends ActionBarActivity { //Ez a fő activity, am
             @Override
             public void onClick(View v) {
                 //A fizetési igény elküldése a szervernek
-                if (Communication.testMode){
-                    Toast.makeText(Guest_Main_menu.this,getResources().getString(R.string.layout_activity_guest_main_menu_fizetek), Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Communication.SendPayRequestToServer(Communication.table_id);
+                if (Communication.actualTable != null && Communication.actualTable.products.size() > 0) {
+                    if (Communication.testMode) {
+                        Toast.makeText(Guest_Main_menu.this, getResources().getString(R.string.layout_activity_guest_main_menu_fizetek), Toast.LENGTH_LONG).show();
+                    } else {
+                        Communication.SendPayRequestToServer(Communication.table_id);
+                    }
+                } else {
+                    Toast.makeText(Guest_Main_menu.this, getResources().getString(R.string.layout_activity_guest_main_menu_nincs_rendelés), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -101,7 +104,7 @@ public class Guest_Main_menu extends ActionBarActivity { //Ez a fő activity, am
                 //Az azonosított asztal rendeléseinek lekérdezése
                 if (Communication.table_id != "") {
                     ProgressDialog pd = new ProgressDialog(Guest_Main_menu.this);
-                    pd.setMessage("Processing...");
+                    pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
                     pd.show();
                     Communication.GetTables();
 

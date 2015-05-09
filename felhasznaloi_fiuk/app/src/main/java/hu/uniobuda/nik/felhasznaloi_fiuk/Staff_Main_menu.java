@@ -20,7 +20,6 @@ import java.util.concurrent.TimeoutException;
 
 public class Staff_Main_menu extends ActionBarActivity {
 
-    String table_id;     //Aktuálisan kiválasztott asztal (Amihez az alkalmazott rendel, vagy aminek elküldheti a fizetési igényét)
     Button btn_tables;  //Asztalok állapotának lekérdezése gomb
     Button btn_meal;    //Menü megjelenitése gomb
     Button btn_pay;     //Kiválasztott asztal fizetésigényének elküldése gomb
@@ -31,10 +30,8 @@ public class Staff_Main_menu extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_main_menu);
 
-        table_id = "";
-
         btn_tables = (Button) findViewById(R.id.btn_tables);
-        btn_tables.setOnClickListener(new View.OnClickListener() {
+        btn_tables.setOnClickListener(new View.OnClickListener() { //Asztalok állapotának lekérdezése
             @Override
             public void onClick(View v) {
                 try {
@@ -43,12 +40,12 @@ public class Staff_Main_menu extends ActionBarActivity {
                     pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
                     pd.show();
 
-                    Communication.GetTables();
+                    Communication.GetTables(); //A szerver a kapcsolati módtól függően lekérdezi az asztalokat
                     if (!Communication.testMode) {
                         Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
                     }
 
-                    Intent intent = new Intent(Staff_Main_menu.this, Tables.class);
+                    Intent intent = new Intent(Staff_Main_menu.this, Tables.class); //Az asztalok activity-ének elindítása
                     startActivity(intent);
 
                     pd.dismiss();
@@ -64,25 +61,25 @@ public class Staff_Main_menu extends ActionBarActivity {
 
 
         //Number picker beállítása
-        np = (NumberPicker) findViewById(R.id.asztalSzamValaszto);
+        np = (NumberPicker) findViewById(R.id.asztalSzamValaszto); //A személyzet kézzel tudja beállítani az asztal számát
         np.setMinValue(1);
         np.setMaxValue(14);
         np.setWrapSelectorWheel(false);
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-            Communication.table_id=Integer.toString(newVal);
+            Communication.table_id=Integer.toString(newVal); //A picker állásának változására íródik át az asztal száma
             }
         });
 
 
-        btn_meal = (Button) findViewById(R.id.btn_meal);
+        btn_meal = (Button) findViewById(R.id.btn_meal); //Innen is el lehet érni a menüt
         btn_meal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     ProgressDialog pd = new ProgressDialog(Staff_Main_menu.this);
-                    pd.setMessage("Processing...");
+                    pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
                     pd.show();
                     Communication.GetProducts();
                     if (!Communication.testMode) {
@@ -102,7 +99,7 @@ public class Staff_Main_menu extends ActionBarActivity {
             }
         });
 
-        btn_pay = (Button) findViewById(R.id.btn_pay);
+        btn_pay = (Button) findViewById(R.id.btn_pay); //A személyzet adott asztaltól fizetési kérést is tud küldeni
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,20 +111,6 @@ public class Staff_Main_menu extends ActionBarActivity {
                 }
             }
         });
-    }
-
-
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (result != null) {
-            String contents = result.getContents();
-            table_id = result.getContents();
-            if (contents != null) {
-                Toast.makeText(this, table_id, Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this,getResources().getString(R.string.layout_activity_guest_main_menu_qr_nemjo),Toast.LENGTH_LONG);
-            }
-        }
     }
 
     @Override
