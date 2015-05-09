@@ -23,6 +23,7 @@ public class Guest_Main_menu extends ActionBarActivity {
     Button btnID;
     Button btnMeal;
     Button btnPay;
+    Button btnMyOrders;
     //String table_id;
     // szerverrel való kommunikációért felelős példány
     //public static Communication communicator;
@@ -107,6 +108,42 @@ public class Guest_Main_menu extends ActionBarActivity {
                 }
                 else{
                     Communication.SendPayRequestToServer(Communication.table_id);
+                }
+            }
+        });
+        btnMyOrders = (Button) findViewById(R.id.btn_order);
+        btnMyOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Communication.table_id != "") {
+                    ProgressDialog pd = new ProgressDialog(Guest_Main_menu.this);
+                    pd.setMessage("Processing...");
+                    pd.show();
+                    Communication.GetTables();
+
+                    if (!Communication.testMode) {
+                        try {
+                            Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (TimeoutException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    pd.dismiss();
+                    Communication.GetTable(Communication.table_id);
+                    if (Communication.actualTable != null) {
+                        Toast.makeText(Guest_Main_menu.this, Communication.actualTable.getName() + String.valueOf(Communication.actualTable.products.size()), Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(Guest_Main_menu.this,"Nincs rendelése", Toast.LENGTH_LONG).show();
+                    }
+                    //todo megjeleniteni a tartalmat
+                }
+                else{
+                    Toast.makeText(Guest_Main_menu.this,"Azonositsa az asztalt", Toast.LENGTH_LONG).show();
                 }
             }
         });

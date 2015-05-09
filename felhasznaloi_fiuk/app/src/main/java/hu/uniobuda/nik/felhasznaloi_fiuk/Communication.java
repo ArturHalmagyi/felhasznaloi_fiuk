@@ -23,6 +23,7 @@ public class Communication {
     public static ArrayList<Table> tables;
     public static String ip = "http://192.168.1.5";
     public static String table_id = "";
+    public static Table actualTable;
 
     public static ArrayList<Table> getTables() {
         return tables;
@@ -70,11 +71,17 @@ public class Communication {
             GetProductsFromServer();
         }
     } //menü lekérdezése
-    public static ArrayList<Product> GetTable(String tableNumber){
-        ArrayList<Product> temp = new ArrayList<Product>();
-        GetTables(); //ezután ki kell választani azt amelyik kell nekünk
-        /////
-        return temp;
+    public static void GetTable(String tableNumber){
+        //ArrayList<Product> temp = new ArrayList<Product>();
+        Table temp = new Table();
+        int i = 0;
+        while (i < Communication.tables.size() && Communication.tables.get(i).getName() != tableNumber){
+            i++;
+        }
+        if (i < Communication.tables.size()){
+            temp = Communication.tables.get(i);
+        }
+        actualTable = temp;
     }   //egy asztal állapotának lekérdezése
     public static void GetTables(){
         if (testMode){
