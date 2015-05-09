@@ -67,10 +67,30 @@ public class Staff_Main_menu extends ActionBarActivity {
                 }
             }
         });
+/*
+        ProgressDialog pd = new ProgressDialog(Staff_Main_menu.this);
+        pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
+        pd.show();
+
         Communication.GetTables();
+
+        if (!Communication.testMode){
+            try {
+                Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (TimeoutException e) {
+                e.printStackTrace();
+            }
+        }
+
+        pd.dismiss();
+*/
         np = (NumberPicker) findViewById(R.id.asztalSzamValaszto);
         np.setMinValue(1);
-        np.setMaxValue(Communication.tables.size() - 1);
+        np.setMaxValue(14);
         np.setWrapSelectorWheel(false);
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
