@@ -25,9 +25,7 @@ import java.util.List;
 public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérdezhető menü
     ///Adattagok
     ArrayList<Product> arr; //A termékek tömbje
-    //int productCount; //A termékek száma
     CustomAdapter adapter; //A termékek megjelenítéséhez szükséges adapter
-    boolean can_submit; //Azonosítva van-e az asztal
     ListView listView;
     ArrayList<NameValuePair> products;
     @Override
@@ -35,29 +33,11 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_meal);
 
-        //Communication.GetProductsFromServer();
-
         products = new ArrayList<NameValuePair>();
-        //Populate_List(products); //TODO ez később a szerver lesz
 
         ///test
         arr = new ArrayList<Product>();
-        //arr = Communication.GetProducts();
         arr = Communication.products;
-
-/*+
-        arr = new ArrayList<Product>();
-        productCount = products.size();
-        for (int i = 0; i < productCount; i++){
-            Product temp = new Product();
-            temp.setName(products.get(i).getName());
-            temp.setPrice(products.get(i).getValue());
-            temp.setQuantity("0");
-            temp.setDb("db");
-            arr.add(temp);
-        }
-*/
-        can_submit = false;
 
         adapter = new CustomAdapter(); //Adapter a listához
         listView = (ListView) findViewById(R.id.listView);
@@ -71,10 +51,7 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-
-    }
+    protected void onPause() { super.onPause(); }
 
     @Override
     protected void onResume() {
@@ -93,12 +70,11 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
 
     void Submit_Click(){
         String temp = "";
-        //String table_id = getIntent().getStringExtra("table_id");
 
-        if (!Communication.table_id.equals("")) {
-            if (Communication.testMode) {
-                for (int i = 0; i < arr.size(); i++) {
-                    if (Integer.parseInt(arr.get(i).getQuantity()) != 0) {
+        if (!Communication.table_id.equals("")) { //ha az azonosított asztal nem üres, akkor küldhetjük el a megrendelést
+            if (Communication.testMode) { //teszt mód-e, ekkor nem a szerverre küldi az adatot
+                for (int i = 0; i < arr.size(); i++) { //végigmegyünk a termékek listáján
+                    if (Integer.parseInt(arr.get(i).getQuantity()) != 0) {//amiből nem 0db van, azt hozzáfűzzük a stringhez
                         temp += arr.get(i).getName();
                         temp += ", ";
                         temp += Integer.parseInt(arr.get(i).getQuantity());
@@ -106,23 +82,23 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
                     }
                 }
             }
-            else {
+            else {      //ha nem teszt mód
                 Table order = new Table();
                 order.setName(Communication.table_id);
-                order.setState("foglalt");
+                order.setState("foglalt"); //a szerveren foglaltra állítjuk az asztal állapotát
 
-                for (int i = 0; i < arr.size(); i++) {
+                for (int i = 0; i < arr.size(); i++) {//végigmegyünk a termékek listáján
                     if (Integer.parseInt(arr.get(i).getQuantity()) != 0) {
-                        order.addProduct(arr.get(i));
+                        order.addProduct(arr.get(i));   //amiből nem 0db van, azt hozzáadjuk a rendeléshez
                     }
                 }
-                Communication.SendOrderToServer(order);
+                Communication.SendOrderToServer(order); //az összegyűjtött rendelést elküldjük a szervernek
                 temp = "Rendelését elküldtük!";
             }
         } else {
             temp = "Kérjük azonosítsa az asztalt!";
         }
-        Toast.makeText(Guest_Meal.this, temp, Toast.LENGTH_LONG).show();
+        Toast.makeText(Guest_Meal.this, temp, Toast.LENGTH_LONG).show(); // megjelenítjük, a beállított üzenetet (rendelések,sikeres rendelés vagy azonosítani kell az asztalt)
     }
 
     private class CustomAdapter extends BaseAdapter {
@@ -181,38 +157,13 @@ public class Guest_Meal extends ActionBarActivity { //A vendégek által lekérd
             return convertView;
         }
 
-        public class ViewHolder {
+        public class ViewHolder {  // costum view a termékek listájának megjelenítéséhez
 
             public TextView name;
             public TextView price;
             public EditText quantity;
             public TextView db;
             int ref;
-
         }
     }
-
-    void Populate_List(List<NameValuePair> list){
-        list.add(new BasicNameValuePair("Kávé", "420"));
-        list.add(new BasicNameValuePair("Kávéka", "421"));
-        list.add(new BasicNameValuePair("Wrapper", "999"));
-        list.add(new BasicNameValuePair("Sütika", "20"));
-        list.add(new BasicNameValuePair("Répa", "119"));
-        list.add(new BasicNameValuePair("Billog", "1420"));
-        list.add(new BasicNameValuePair("Bálint", "1"));
-        list.add(new BasicNameValuePair("STM32F4Discovery mikrokontroller", "32"));
-        list.add(new BasicNameValuePair("Razer", "11"));
-        list.add(new BasicNameValuePair("Send which", "131"));
-        list.add(new BasicNameValuePair("Fickó", "980"));
-        list.add(new BasicNameValuePair("Alan", "40"));
-        list.add(new BasicNameValuePair("Cigike", "15"));
-        list.add(new BasicNameValuePair("Büffet", "000"));
-        list.add(new BasicNameValuePair("Versle", "129"));
-        list.add(new BasicNameValuePair("Sejci", "1000"));
-        list.add(new BasicNameValuePair("Kvanter", "960"));
-        list.add(new BasicNameValuePair("Kalun", "113"));
-        list.add(new BasicNameValuePair("Sántáné", "666"));
-        list.add(new BasicNameValuePair("Jackie Csink", "90"));
-    }
-
 }
