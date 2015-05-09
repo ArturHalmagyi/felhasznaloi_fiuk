@@ -26,6 +26,7 @@
 
     <string name="layout_activity_staff_bejelentkezes">Személyzet</string>
     <string name="layout_activity_staff_main_menu_asztalok">Asztalok</string>
+    <string name="layout_activity_staff_main_menu_asztalValaszt">Asztal választás:</string>
 
     <!-- Staff login -->
     <string name="layout_activity_staff_login_felhasznalonev">Felhasználónév</string>
