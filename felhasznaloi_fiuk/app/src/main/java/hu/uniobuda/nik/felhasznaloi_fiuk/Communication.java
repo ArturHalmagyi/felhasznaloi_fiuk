@@ -88,8 +88,21 @@ public class Communication {
             SendOrderToServer(table);
         }
     }
-    public static void Authentication(){
+    public static void Authentication(String user, String pass){
+        if (testMode){
 
+        }
+        else {
+            AuthenticationOnServer(user,pass);
+        }
+    }
+    public static void SendPayRequest(String tableNumber){
+        if (testMode){
+            Toast.makeText(context,"Fizetés történik", Toast.LENGTH_LONG);
+        }
+        else{
+            SendPayRequestToServer(tableNumber);
+        }
     }
 
 
@@ -255,4 +268,10 @@ public class Communication {
 
         ServerCom.execute("2",table.getName(),MyProductStrBuilder(table.getProducts()));  //rendelés elküldése a szervernek
     } //TODO krizantin
+    public static void SendPayRequestToServer(String tableNumber){
+        //todo krizantin
+    }
+    public static void AuthenticationOnServer(String user, String pass){
+        //todo krizantin
+    };
 }
