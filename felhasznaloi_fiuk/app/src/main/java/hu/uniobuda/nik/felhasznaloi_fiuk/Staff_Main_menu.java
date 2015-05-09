@@ -22,9 +22,11 @@ import java.util.concurrent.TimeoutException;
 public class Staff_Main_menu extends ActionBarActivity {
 
     //Button btnID;
-    String azonositottString;
+    String table_id;
 
     Button btn_tables;
+    Button btn_meal;
+    Button btn_pay;
     NumberPicker np;
 
     @Override
@@ -34,7 +36,7 @@ public class Staff_Main_menu extends ActionBarActivity {
 
 
         //btnID = (Button) findViewById(R.id.btn_tables);
-        azonositottString = "";
+        table_id = "";
 
         btn_tables = (Button) findViewById(R.id.btn_tables);
         btn_tables.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +46,7 @@ public class Staff_Main_menu extends ActionBarActivity {
                     //Communication.getServerCom().setContext(Guest_Main_menu.this);
                     //Communication.products = null;
                     ProgressDialog pd = new ProgressDialog(Staff_Main_menu.this);
-                    pd.setMessage("Processing...");
+                    pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
                     pd.show();
                     //if (Communication.products == null) {
                     //Communication.GetProductsFromServer();
@@ -78,6 +80,50 @@ public class Staff_Main_menu extends ActionBarActivity {
             }
         });
 
+
+        btn_meal = (Button) findViewById(R.id.btn_meal);
+        btn_meal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    //Communication.getServerCom().setContext(Guest_Main_menu.this);
+                    //Communication.products = null;
+                    ProgressDialog pd = new ProgressDialog(Staff_Main_menu.this);
+                    pd.setMessage("Processing...");
+                    pd.show();
+                    //if (Communication.products == null) {
+                    //Communication.GetProductsFromServer();
+                    Communication.GetProducts();
+                    if (!Communication.testMode) {
+                        Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+                    }
+                    //}
+                    pd.dismiss();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (TimeoutException e) {
+                    e.printStackTrace();
+                }
+
+                Intent intent = new Intent(Staff_Main_menu.this, Guest_Meal.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_pay = (Button) findViewById(R.id.btn_pay);
+        btn_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Communication.testMode){
+                    Toast.makeText(Staff_Main_menu.this,getResources().getString(R.string.layout_activity_guest_main_menu_fizetek), Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Communication.SendPayRequestToServer(Communication.table_id);
+                }
+            }
+        });
     }
 
 
@@ -85,12 +131,12 @@ public class Staff_Main_menu extends ActionBarActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (result != null) {
             String contents = result.getContents();
-            azonositottString = result.getContents();
+            table_id = result.getContents();
             if (contents != null) {
                 //showDialog(R.string.result_succeeded, result.toString());
-                Toast.makeText(this, azonositottString, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, table_id, Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this,"Result féjld",Toast.LENGTH_LONG);
+                Toast.makeText(this,getResources().getString(R.string.layout_activity_guest_main_menu_qr_nemjo),Toast.LENGTH_LONG);
             }
         }
     }
@@ -108,11 +154,6 @@ public class Staff_Main_menu extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

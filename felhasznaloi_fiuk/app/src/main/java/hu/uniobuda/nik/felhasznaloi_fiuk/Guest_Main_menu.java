@@ -67,7 +67,7 @@ public class Guest_Main_menu extends ActionBarActivity {
                     //Communication.getServerCom().setContext(Guest_Main_menu.this);
                     //Communication.products = null;
                     ProgressDialog pd = new ProgressDialog(Guest_Main_menu.this);
-                    pd.setMessage("Processing...");
+                    pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
                     pd.show();
                     //if (Communication.products == null) {
                         //Communication.GetProductsFromServer();
@@ -103,7 +103,7 @@ public class Guest_Main_menu extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 if (Communication.testMode){
-                    Toast.makeText(Guest_Main_menu.this,"Fizetését jeleztük", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Guest_Main_menu.this,getResources().getString(R.string.layout_activity_guest_main_menu_fizetek), Toast.LENGTH_LONG).show();
                 }
                 else{
                     Communication.SendPayRequestToServer(Communication.table_id);
@@ -128,7 +128,7 @@ public class Guest_Main_menu extends ActionBarActivity {
                 //showDialog(R.string.result_succeeded, result.toString());
                 Toast.makeText(this, Communication.table_id, Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this,"Result féjld",Toast.LENGTH_LONG);
+                Toast.makeText(this,getResources().getString(R.string.layout_activity_guest_main_menu_qr_nemjo),Toast.LENGTH_LONG);
             }
         }
     }
@@ -147,10 +147,6 @@ public class Guest_Main_menu extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

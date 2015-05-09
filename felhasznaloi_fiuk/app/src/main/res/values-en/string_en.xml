@@ -16,6 +16,9 @@
     <string name="layout_activity_guest_main_menu_asztal_azonositas">Table ID</string>
     <string name="layout_activity_guest_main_menu_fizetes">Pay request</string>
     <string name="layout_activity_guest_main_menu_megrendeleseim">My orders</string>
+    <string name="layout_activity_guest_main_menu_fizetek">Pay request sent</string>
+    <string name="layout_activity_guest_main_menu_qr_nemjo">Baaad...</string>
+    <string name="layout_activity_guest_main_menu_dolgozom">Processing...</string>
 
     <!-- Guest meal -->
     <string name="layout_guest_meal_product">Product</string>
@@ -32,6 +35,8 @@
     <string name="layout_activity_staff_login_felhasznalonev">Username</string>
     <string name="layout_activity_staff_login_jelszo">Password</string>
     <string name="layout_activity_staff_login_ButtonLogin">Login</string>
+    <string name="layout_activity_staff_login_sikerult">Authentication successful!</string>
+    <string name="layout_activity_staff_login_rossz">Authentication failed!</string>
 
     <!-- Staff meal -->
     <string name="layout_activity_staff_meal_frissites">Refresh</string>

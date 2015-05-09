@@ -78,7 +78,7 @@ public class Tables extends ActionBarActivity { //Az asztalok állapotát lekér
         if (id == R.id.refresh) {
             try {
                 ProgressDialog pd = new ProgressDialog(Tables.this);
-                pd.setMessage("Processing...");
+                pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
                 pd.show();
                 Communication.GetTables();
                 if (!Communication.testMode) {

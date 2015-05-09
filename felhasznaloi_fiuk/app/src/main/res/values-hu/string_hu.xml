@@ -16,6 +16,9 @@
     <string name="layout_activity_guest_main_menu_asztal_azonositas">Asztal azonosítása</string>
     <string name="layout_activity_guest_main_menu_fizetes">Fizetés</string>
     <string name="layout_activity_guest_main_menu_megrendeleseim">Megrendeléseim</string>
+    <string name="layout_activity_guest_main_menu_fizetek">Fizetését jeleztük!</string>
+    <string name="layout_activity_guest_main_menu_qr_nemjo">Nem jó!</string>
+    <string name="layout_activity_guest_main_menu_dolgozom">Kérjük várjon...</string>
 
     <!-- Guest meal -->
     <string name="layout_guest_meal_product">Termék</string>
@@ -32,6 +35,9 @@
     <string name="layout_activity_staff_login_felhasznalonev">Felhasználónév</string>
     <string name="layout_activity_staff_login_jelszo">Jelszó</string>
     <string name="layout_activity_staff_login_ButtonLogin">Belépés</string>
+    <string name="layout_activity_staff_login_sikerult">Sikeres azonosítás!</string>
+    <string name="layout_activity_staff_login_rossz">Azonosítás nem sikerült!</string>
+
 
     <!-- Staff meal -->
     <string name="layout_activity_staff_meal_frissites">Frissítés</string>
