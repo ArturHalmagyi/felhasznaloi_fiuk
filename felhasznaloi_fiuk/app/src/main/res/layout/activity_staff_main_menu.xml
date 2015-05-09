@@ -44,22 +44,21 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text= "@string/layout_activity_staff_main_menu_asztalValaszt"
         android:id="@+id/textAsztalValasztas"
         android:layout_alignBottom="@+id/asztalSzamValaszto"
-        android:layout_toLeftOf="@+id/imageView"
-        android:layout_toStartOf="@+id/imageView"
-        android:layout_marginBottom="51dp" />
+        android:singleLine="true"
+        android:layout_marginBottom="40dp" />
 
     <NumberPicker
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:id="@+id/asztalSzamValaszto"
         android:layout_below="@+id/btn_pay"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView"
+        android:layout_toRightOf="@+id/textAsztalValasztas"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="38dp" />
 
 </RelativeLayout>
