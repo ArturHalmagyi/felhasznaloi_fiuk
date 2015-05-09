@@ -19,18 +19,18 @@ public class Communication {
 
 
 
-    public static ArrayList<Product> products;
-    public static ArrayList<Table> tables;
-    public static String ip = "http://192.168.1.5";
-    public static String table_id = "";
-    public static Table actualTable;
+    public static ArrayList<Product> products;  //Termékek listája
+    public static ArrayList<Table> tables;      //Asztalok listája
+    public static String ip = "http://192.168.1.5";  //A szerver cime
+    public static String table_id = "";             //Aktuális asztal száma
+    public static Table actualTable;                //Aktuális asztal
 
     public static ArrayList<Table> getTables() {
         return tables;
     }
 
-    public static Random rand = new Random();
-    static Boolean testMode=false;
+    public static Random rand = new Random();  //A tesztadatok feltöltéséhez használt random szám generátor
+    static Boolean testMode=false;              //Tesztmód beállitása
     static boolean staff=true;
     private static ComTask ServerCom;
 
@@ -124,10 +124,10 @@ public class Communication {
 
         tables = null;
 
-        int randTestTables = rand.nextInt(30)+10;
-        for (int i = 0; i <randTestTables; i++){
+        //int randTestTables = rand.nextInt(30)+10;
+        for (int i = 0; i <14; i++){
             Table temp = new Table();
-            temp.setName(String.valueOf(i));
+            temp.setName(String.valueOf(i+1));
 
             if (i % 10 == 0) {
                 temp.setState("fizet");
