@@ -146,10 +146,8 @@ public class Guest_Main_menu extends ActionBarActivity {
                         dlgAlert.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
                             }
                         });
-
                         dlgAlert.setTitle("megrendelések");
                         dlgAlert.setPositiveButton("OK",null);
                         dlgAlert.setCancelable(true);
