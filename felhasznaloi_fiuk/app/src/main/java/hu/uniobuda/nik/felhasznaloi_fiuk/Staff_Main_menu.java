@@ -20,11 +20,11 @@ import java.util.concurrent.TimeoutException;
 
 public class Staff_Main_menu extends ActionBarActivity {
 
-    String table_id;
+    String table_id;     //Aktuálisan kiválasztott asztal (Amihez az alkalmazott rendel, vagy aminek elküldheti a fizetési igényét)
     Button btn_tables;  //Asztalok állapotának lekérdezése gomb
     Button btn_meal;    //Menü megjelenitése gomb
     Button btn_pay;     //Kiválasztott asztal fizetésigényének elküldése gomb
-    NumberPicker np;    //Asztal kiválasztása (Amihez az alkalmazott rendel, vagy aminek elküldheti a fizetési igényét)
+    NumberPicker np;    //Asztal kiválasztását szolgáló gomb
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,8 @@ public class Staff_Main_menu extends ActionBarActivity {
             }
         });
 
+
+        //Number picker beállítása
         np = (NumberPicker) findViewById(R.id.asztalSzamValaszto);
         np.setMinValue(1);
         np.setMaxValue(14);
