@@ -17,8 +17,6 @@ import java.util.Random;
 
 public class Communication {
 
-
-
     public static ArrayList<Product> products;  //Termékek listája
     public static ArrayList<Table> tables;      //Asztalok listája
     public static String ip = "http://192.168.1.5";  //A szerver cime
@@ -40,16 +38,6 @@ public class Communication {
 
     public Communication(Boolean test) {
         testMode = test;
-
-
-/*
-        if (testMode == true){
-
-        }
-        else{
-
-        }
-        */
     }
 
 
@@ -115,8 +103,6 @@ public class Communication {
             SendPayRequestToServer(tableNumber);
         }
     }       //Fizetési jelzés elküldése
-
-
 
 
     //Tesztadatok
@@ -207,7 +193,6 @@ public class Communication {
         }
         tables.add(table);
     }
-
 
 
     //Szerver segédmetódusok
