@@ -44,18 +44,13 @@ public class Staff_Login extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
     public void login(View view){
 
 
         ProgressDialog pd = new ProgressDialog(Staff_Login.this);
-        pd.setMessage("Processing...");
+        pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
         pd.show();
 
         Communication.Authentication(username.getText().toString(),password.getText().toString());
@@ -75,13 +70,13 @@ public class Staff_Login extends ActionBarActivity {
         pd.dismiss();
 
         if(Communication.staff)
-        { Toast.makeText(this, "sikeres azonositas",
+        { Toast.makeText(this, getResources().getString(R.string.layout_activity_staff_login_sikerult),
                     Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, Staff_Main_menu.class);
         startActivity(intent);
         }
         else {
-        Toast.makeText(this, "nem nyert",
+        Toast.makeText(this, getResources().getString(R.string.layout_activity_staff_login_rossz),
                 Toast.LENGTH_LONG).show();
         }
        /* if(username.getText().toString().equals("A") &&
