@@ -19,16 +19,23 @@
         android:layout_height="wrap_content"
         android:text="@string/layout_activity_guest_main_menu_etlap"
         android:id="@+id/btn_meal"
+        android:background="@drawable/button_color"
         android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="58dp"
+        android:layout_marginBottom="7dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/layout_activity_staff_main_menu_asztalok"
         android:id="@+id/btn_tables"
+        android:background="@drawable/button_color"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/btn_meal"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="7dp"/>
 
 
     <Button
@@ -36,7 +43,28 @@
         android:layout_height="wrap_content"
         android:text="@string/layout_activity_guest_main_menu_fizetes"
         android:id="@+id/btn_pay"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btn_tables"/>
+        android:background="@drawable/button_color"
+        android:layout_below="@+id/btn_tables"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="7dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text= "@string/layout_activity_staff_main_menu_asztalValaszt"
+        android:id="@+id/textAsztalValasztas"
+        android:layout_alignBottom="@+id/asztalSzamValaszto"
+        android:singleLine="true"
+        android:layout_marginBottom="40dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/asztalSzamValaszto"
+        android:layout_below="@+id/btn_pay"
+        android:layout_toRightOf="@+id/textAsztalValasztas"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="38dp" />
 
 </RelativeLayout>

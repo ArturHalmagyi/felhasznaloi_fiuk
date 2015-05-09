@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -24,6 +25,7 @@ public class Staff_Main_menu extends ActionBarActivity {
     String azonositottString;
 
     Button btn_tables;
+    NumberPicker np;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +35,6 @@ public class Staff_Main_menu extends ActionBarActivity {
 
         //btnID = (Button) findViewById(R.id.btn_tables);
         azonositottString = "";
-
-        /*btnID.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                IntentIntegrator integrator = new IntentIntegrator(Staff_Main_menu.this);
-                integrator.initiateScan(integrator.QR_CODE_TYPES);
-            }
-        });*/
 
         btn_tables = (Button) findViewById(R.id.btn_tables);
         btn_tables.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +64,17 @@ public class Staff_Main_menu extends ActionBarActivity {
                 } catch (TimeoutException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        Communication.GetTables();
+        np = (NumberPicker) findViewById(R.id.asztalSzamValaszto);
+        np.setMinValue(1);
+        np.setMaxValue(Communication.tables.size() - 1);
+        np.setWrapSelectorWheel(false);
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+            Communication.table_id=Integer.toString(newVal);
             }
         });
 
@@ -112,5 +117,8 @@ public class Staff_Main_menu extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }
