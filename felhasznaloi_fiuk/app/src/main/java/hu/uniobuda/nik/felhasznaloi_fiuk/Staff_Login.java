@@ -59,8 +59,6 @@ public class Staff_Login extends ActionBarActivity {
             try {
 
                 Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
-
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -70,8 +68,6 @@ public class Staff_Login extends ActionBarActivity {
             }
         }
         pd.dismiss();
-
-
 
         if(Communication.staff)
         { Toast.makeText(this, getResources().getString(R.string.layout_activity_staff_login_sikerult),
