@@ -19,9 +19,9 @@ import java.util.concurrent.TimeoutException;
 public class Staff_Login extends ActionBarActivity {
 
 
-    private EditText  username=null;
-    private EditText  password=null;
-    private Button btnLogin;
+    private EditText username=null; //felhasználói név mező
+    private EditText password=null; //jelszó mező
+    private Button btnLogin; //belépés gomb
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +32,17 @@ public class Staff_Login extends ActionBarActivity {
         btnLogin = (Button) findViewById(R.id.button);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                ProgressDialog pd = new ProgressDialog(Staff_Login.this);
+            public void onClick(View v) { //belépés gomb megnyomására
+                ProgressDialog pd = new ProgressDialog(Staff_Login.this); //megjelenik egy töltést jelző dialog
                 pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
                 pd.show();
 
-                Communication.Authentication(username.getText().toString(),password.getText().toString());
+                Communication.Authentication(username.getText().toString(),password.getText().toString()); //a név, jelszó mező tartalmát átadjuk a communication osztálynak
 
-                if (!Communication.testMode){
+                if (!Communication.testMode){ //ha nem teszt mód
                     try {
 
-                        Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
+                        Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS); //kommunikálunk a szerverrel, erre max 1 másodpercet várunk
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
@@ -51,15 +51,15 @@ public class Staff_Login extends ActionBarActivity {
                         e.printStackTrace();
                     }
                 }
-                pd.dismiss();
+                pd.dismiss(); //megsemmisítjük a töltő dialogot
 
-                if(Communication.staff)
+                if(Communication.staff) //ha sikeres volt az azonosítás
                 { Toast.makeText(Staff_Login.this, getResources().getString(R.string.layout_activity_staff_login_sikerult),
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_LONG).show(); //kiírjuk,hogy sikeres
                     Intent intent = new Intent(Staff_Login.this, Staff_Main_menu.class);
-                    startActivity(intent);
+                    startActivity(intent);//elindítjuk a dolgozók főmenüjét tartalmazó activity-t
                 }
-                else {
+                else { // ha nem jó a név/jelszó, kiírjuk, hogy nem sikerült az azonosítás
                     Toast.makeText(Staff_Login.this, getResources().getString(R.string.layout_activity_staff_login_rossz),
                             Toast.LENGTH_LONG).show();
                 }
@@ -81,39 +81,4 @@ public class Staff_Login extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void login(View view){
-
-
-        ProgressDialog pd = new ProgressDialog(Staff_Login.this);
-        pd.setMessage(getResources().getString(R.string.layout_activity_guest_main_menu_dolgozom));
-        pd.show();
-
-        Communication.Authentication(username.getText().toString(),password.getText().toString());
-
-        if (!Communication.testMode){
-            try {
-
-                Communication.getServerCom().get(1000, TimeUnit.MILLISECONDS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (TimeoutException e) {
-                e.printStackTrace();
-            }
-        }
-        pd.dismiss();
-
-        if(Communication.staff)
-        { Toast.makeText(this, getResources().getString(R.string.layout_activity_staff_login_sikerult),
-                    Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, Staff_Main_menu.class);
-        startActivity(intent);
-        }
-        else {
-        Toast.makeText(this, getResources().getString(R.string.layout_activity_staff_login_rossz),
-                Toast.LENGTH_LONG).show();
-        }
-    }
 }
