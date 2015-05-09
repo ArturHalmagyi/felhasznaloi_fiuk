@@ -32,11 +32,6 @@
             android:screenOrientation="portrait"
             android:name=".Staff_Main_menu"
             android:label="@string/title_activity_staff__main_menu" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:screenOrientation="portrait"
