@@ -23,7 +23,6 @@ public class Staff_Main_menu extends ActionBarActivity {
 
     //Button btnID;
     String table_id;
-
     Button btn_tables;
     Button btn_meal;
     Button btn_pay;
