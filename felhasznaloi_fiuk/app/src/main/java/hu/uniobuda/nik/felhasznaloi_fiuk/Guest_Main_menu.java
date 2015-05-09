@@ -124,7 +124,7 @@ public class Guest_Main_menu extends ActionBarActivity { //Ez a fő activity, am
                     Communication.GetTable(Communication.table_id);
 
                     if (Communication.actualTable.products.size() > 0) { //Ha van rendelt termék, kijelzi azokat, ha nincs, szól
-                        Toast.makeText(Guest_Main_menu.this, Communication.actualTable.getName() + String.valueOf(Communication.actualTable.products.size()), Toast.LENGTH_LONG).show();
+
                         AlertDialog.Builder dlgAlert= new AlertDialog.Builder(Guest_Main_menu.this); //Felugró ablak létrehozása
 
                         String temp = "";

@@ -29,7 +29,7 @@ public class Communication {
 
     public static Random rand = new Random();  //A tesztadatok feltöltéséhez használt random szám generátor
     static Boolean testMode=false;              //Tesztmód beállitása
-    static boolean staff=true;                  //Személyzet belépve
+    static boolean staff=true;                  //Személyzet alapból belépve tesztelési célból, hogy ne kelljen mindig beírni a név jelszó párost
     private static ComTask ServerCom;
 
     public static ComTask getServerCom() {
